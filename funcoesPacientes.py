@@ -2,17 +2,33 @@
 from bibliotecaFuncoes import criptografarInformacao,descriptografarInformacao
 
 
-def CadastrasPaciente(cpf,nome,rg,telefone,endereco,tipoSanguineo,informacoesGerais):
+def CadastrasPaciente(tuplaPaciente):
+    cpf = ""
+    nome = ""
+    rg = ""
+    telefone = ""
+    endereco = ""
+    tipoSanguineo = ""
+    informacoesGerais = ""
+    contador = 0
+    for valor in tuplaPaciente:
+        if contador == 0:
+            cpf = criptografarInformacao(valor)
+        elif contador == 1:
+            nome = criptografarInformacao(valor)
+        elif contador == 2:
+            rg = criptografarInformacao(valor)
+        elif contador == 3:
+            telefone = criptografarInformacao(valor)
+        elif contador == 4:
+            endereco = criptografarInformacao(valor)
+        elif contador == 5:
+            tipoSanguineo = criptografarInformacao(valor)
+        elif contador == 6:
+            informacoesGerais = criptografarInformacao(valor)
+        contador+=1
+
     arqPacientes = open("pacientes.txt", "w")
-
-    cpf = criptografarInformacao(cpf)
-    nome = criptografarInformacao(nome)
-    rg = criptografarInformacao(rg)
-    telefone = criptografarInformacao(telefone)
-    endereco = criptografarInformacao(endereco)
-    tipoSanguineo = criptografarInformacao(tipoSanguineo)
-    informacoesGerais = criptografarInformacao(informacoesGerais)
-
     arqPacientes.write(cpf+" "+nome+" "+rg+" "+telefone+" "+endereco+" "+tipoSanguineo+" "+informacoesGerais)
     arqPacientes.flush()
     arqPacientes.close()
@@ -48,6 +64,7 @@ def excluirPaciente(cpf):
     linha = arquivo.readline()
     flag = False
     while linha != "" and flag != True:
+        letraCriptografada = ""
         for numero in linha:
             if numero != " ":
                 letraCriptografada = letraCriptografada + numero
@@ -66,6 +83,6 @@ def excluirPaciente(cpf):
     return resultado
 
 
-#CadastrasPaciente("53409360","Danilo","8637637","3010","R5","O+","deprecao")
+'''CadastrasPaciente(("53409360","Danilo","8637637","3010","R5","O+","deprecao"))
 resultado2 = atualizarPaciente("53409360","kkkkk","99999","5000","R1","A+","Curado")
-resultado3 = excluirPaciente("53409360")
+resultado3 = excluirPaciente("53409360")'''

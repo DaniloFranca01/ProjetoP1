@@ -7,7 +7,7 @@ def construtorListaPacientes():
     janelaListaPacientes["bg"] = "#cbfbfe"
     janelaListaPacientes.geometry("1005x230+300+300")
 
-    tabelaPacientes = Treeview()
+    tabelaPacientes = Treeview(janelaListaPacientes)
     tabelaPacientes['columns'] = ('cpf', 'nome', 'rg','sexo','telefone','endereco','tipoSanguineo','informacoes')
     tabelaPacientes.heading("#0", text='Nunemro', anchor='w')
     tabelaPacientes.column("#0", anchor="w")
@@ -27,11 +27,8 @@ def construtorListaPacientes():
     tabelaPacientes.column('tipoSanguineo', anchor='center', width=100)
     tabelaPacientes.heading('informacoes', text='Info')
     tabelaPacientes.column('informacoes', anchor='center', width=100)
-
     tabelaPacientes.grid(sticky = (N,S,W,E))
     tabelaPacientes.grid_rowconfigure(0, weight = 1)
     tabelaPacientes.grid_columnconfigure(0, weight = 1)
 
     janelaListaPacientes.mainloop()
-
-construtorListaPacientes()

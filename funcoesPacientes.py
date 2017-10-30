@@ -6,6 +6,7 @@ def CadastrasPaciente(tuplaPaciente):
     cpf = ""
     nome = ""
     rg = ""
+    sexo = ""
     telefone = ""
     endereco = ""
     tipoSanguineo = ""
@@ -19,17 +20,19 @@ def CadastrasPaciente(tuplaPaciente):
         elif contador == 2:
             rg = criptografarInformacao(valor)
         elif contador == 3:
-            telefone = criptografarInformacao(valor)
+            sexo = criptografarInformacao(valor)
         elif contador == 4:
-            endereco = criptografarInformacao(valor)
+            telefone = criptografarInformacao(valor)
         elif contador == 5:
-            tipoSanguineo = criptografarInformacao(valor)
+            endereco = criptografarInformacao(valor)
         elif contador == 6:
+            tipoSanguineo = criptografarInformacao(valor)
+        elif contador == 7:
             informacoesGerais = criptografarInformacao(valor)
         contador+=1
 
     arqPacientes = open("pacientes.txt", "w")
-    arqPacientes.write(cpf+" "+nome+" "+rg+" "+telefone+" "+endereco+" "+tipoSanguineo+" "+informacoesGerais)
+    arqPacientes.write(cpf+" "+nome+" "+rg+" "+sexo+" "+telefone+" "+endereco+" "+tipoSanguineo+" "+informacoesGerais)
     arqPacientes.flush()
     arqPacientes.close()
 

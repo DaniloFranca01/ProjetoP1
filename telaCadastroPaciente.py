@@ -2,7 +2,7 @@ import tkinter as tk
 import funcoesPacientes as fpc
 def construtorFormulario():
     def button_click():
-        tuplaPaciente = (edCpf.get(),edNome.get(),edRg.get(),edTelefone.get(),edEndereco.get(),edTipoSanguineo.get(),edInformacoesGerais.get())
+        tuplaPaciente = (edCpf.get(),edNome.get(),edRg.get(),edSexo.get(),edTelefone.get(),edEndereco.get(),edTipoSanguineo.get(),edInformacoesGerais.get())
         fpc.CadastrasPaciente(tuplaPaciente)
 
     janeCadastroPaciente = tk.Tk()

@@ -1,12 +1,14 @@
 import tkinter as tk
 import tkinter.filedialog
 import telaCadastroPaciente as cadPaciente
+import listaPacientes as listPacientes
 def construtorPrincipal():
     def cadastrar_click():
         cadPaciente.construtorFormulario()
     def editar_click():
-        tkinter.FileDialog.telaCadastroPaciente
-
+        cadPaciente.construtorFormulario()
+    def listar_click():
+        listPacientes.construtorListaPacientes()
     janelaPrincipal = tk.Tk()
     janelaPrincipal.title("Medical Manager")
     janelaPrincipal["bg"] = "#cbfbfe"
@@ -22,16 +24,16 @@ def construtorPrincipal():
     lbImagem["width"] = 658
     lbImagem.grid(row=0, columnspan=300)
 
-    botaoCadastrar = tk.Button(janelaPrincipal, width = 16, text = "Cadastrar Paciente", command = cadastrar_click, background = "White",highlightcolor = "White")
+    botaoCadastrar = tk.Button(janelaPrincipal, width = 16,height = 2, text = "Cadastrar Paciente", command = cadastrar_click, background = "White",highlightcolor = "White")
     botaoCadastrar.grid(row=2,column=1)
 
-    botaoEditar = tk.Button(janelaPrincipal, width = 16, text = "Editar Paciente", command = editar_click, background = "White",highlightcolor = "White")
+    botaoEditar = tk.Button(janelaPrincipal, width = 16,height = 2, text = "Editar Paciente", command = editar_click, background = "White",highlightcolor = "White")
     botaoEditar.grid(row=2,column=2)
 
-    botaoExcluir = tk.Button(janelaPrincipal, width = 16, text = "Excluir Paciente", command = editar_click, background = "White",highlightcolor = "White")
+    botaoExcluir = tk.Button(janelaPrincipal, width = 16,height = 2, text = "Excluir Paciente", command = editar_click, background = "White",highlightcolor = "White")
     botaoExcluir.grid(row=2,column=3)
 
-    botaoMostrar = tk.Button(janelaPrincipal, width = 16, text = "Mostrar Paciente", command = editar_click, background = "White",highlightcolor = "White")
+    botaoMostrar = tk.Button(janelaPrincipal, width = 16,height = 2, text = "Mostrar Paciente", command = listar_click, background = "White",highlightcolor = "White")
     botaoMostrar.grid(row=2,column=4)
 
     botaoEditar.mainloop()

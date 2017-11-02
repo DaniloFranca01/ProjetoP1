@@ -37,5 +37,3 @@ def construtorPrincipal():
     botaoMostrar.grid(row=2,column=4)
 
     botaoEditar.mainloop()
-
-construtorPrincipal()

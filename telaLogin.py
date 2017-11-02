@@ -3,6 +3,7 @@ from tkinter import *
 import cadastrarUsuario as cadUsuario
 import telaPrincipal as telaPrincipal
 import funcoesUsuarios as funcUsuario
+
 def button_click():
     loginUsuario = edLogin.get()
     senhaUsuario = edSenha.get()
@@ -19,10 +20,10 @@ janelaLogin.title("Login")
 janelaLogin["bg"] = "#cbfbfe"
 janelaLogin.geometry("300x150+300+300")
 
-imagem = PhotoImage(file="sme.png")
+imagem = PhotoImage(file="smmLogin.png")
 lbImagem = Label(janelaLogin, image=imagem)
 lbImagem.imagem = imagem
-lbImagem["height"] = 30
+lbImagem["height"] = 70
 lbImagem["width"] = 300
 lbImagem.grid(row =0, columnspan = 300)
 

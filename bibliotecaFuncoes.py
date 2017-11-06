@@ -82,7 +82,7 @@ def criptografarInformacao(informacao):
     primeiraVez = True
     for letra in informacao:
         if primeiraVez:
-            loginCriptografado = str(ord(letra)+37)
+            informacaoCriptografada = str(ord(letra)+37)
             primeiraVez = False
         else:
             informacaoCriptografada = informacaoCriptografada + " " + str(ord(letra) + 37)
@@ -96,5 +96,5 @@ def descriptografarInformacao(informacao):
     return informacaoDescriptografada
 
 
-criptografarLogin("Danilo","123")
-descriptografarLogin()
+#criptografarLogin("Danilo","123")
+#descriptografarLogin()

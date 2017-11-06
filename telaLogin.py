@@ -4,7 +4,7 @@ import cadastrarUsuario as cadUsuario
 import telaPrincipal as telaPrincipal
 import funcoesUsuarios as funcUsuario
 
-def button_click():
+def logar_click():
     loginUsuario = edLogin.get()
     senhaUsuario = edSenha.get()
     niveldeAcesso = funcUsuario.recebeUsuario(loginUsuario,senhaUsuario)
@@ -40,7 +40,7 @@ edLogin.grid(row = 1,column = 1,sticky = W)
 edSenha = Entry(janelaLogin, show="*")
 edSenha.grid(row = 2,column = 1, sticky = W)
 
-botaoEntrar = Button(janelaLogin, width = 16, text = "Logar", command = button_click, background = "White",highlightcolor = "White")
+botaoEntrar = Button(janelaLogin, width = 16, text = "Logar", command = logar_click, background = "White",highlightcolor = "White")
 botaoEntrar.grid(row=3,column=1,sticky = W)
 
 botaoEntrar = Button(janelaLogin, width = 16, text = "Novo Usuario", command = novo_click, background = "White",highlightcolor = "White")

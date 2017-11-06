@@ -1,16 +1,21 @@
 # coding: utf-8
 import tkinter as tk
+import funcoesUsuarios as userfunc
 
 def construtorCadastoUsuario():
-    def button_click():
+    def cadastrar_usuario():
         loginUsuario = edLogin.get()
         senhaUsuario = edSenha.get()
+        tuplaAcesso = ()
+        tuplaAcesso = listbNicelAcesso.curselection()[0]
+        niveldeAcesso = int(tuplaAcesso)
+        userfunc.cadastrarUsuario(loginUsuario,senhaUsuario,str(niveldeAcesso))
 
 
     janelaCadUsuario = tk.Tk()
-    janelaCadUsuario.title("Login")
+    janelaCadUsuario.title("Cadastro de Usuário")
     janelaCadUsuario["bg"] = "#cbfbfe"
-    janelaCadUsuario.geometry("300x180+300+300")
+    janelaCadUsuario.geometry("300x200+300+300")
 
     lbLogin = tk.Label(janelaCadUsuario, text="Login: ")
     lbLogin.grid(row=1)
@@ -25,21 +30,17 @@ def construtorCadastoUsuario():
     edSenha = tk.Entry(janelaCadUsuario, show="*")
     edSenha.grid(row=2, column=1, sticky=tk.W)
 
-    nivelAcesso = tk.IntVar()
-    cbNivelAcesso1 = tk.Checkbutton(janelaCadUsuario, text="Super usuário", variable=nivelAcesso)
-    cbNivelAcesso1.grid(row=3, column=1, sticky=tk.W)
+    listbNicelAcesso = tk.Listbox(janelaCadUsuario)
+    listbNicelAcesso.grid(row=3, column=1, sticky=tk.W)
 
-    cbNivelAcesso2 = tk.Checkbutton(janelaCadUsuario, text="Gerente", variable=nivelAcesso)
-    cbNivelAcesso2.grid(row=4, column=1, sticky=tk.W)
+    for item in ["Super usuário", "Gerente", "Técnico", "Estagiário"]:
+        listbNicelAcesso.insert(tk.END, item)
 
-    cbNivelAcesso3 = tk.Checkbutton(janelaCadUsuario, text="Técnico", variable=nivelAcesso)
-    cbNivelAcesso3.grid(row=5, column=1, sticky=tk.W)
+    listbNicelAcesso.config(height=4)
 
-    cbNivelAcesso4 = tk.Checkbutton(janelaCadUsuario, text="Estagiário", variable=nivelAcesso)
-    cbNivelAcesso4.grid(row=6, column=1, sticky=tk.W)
-
-    botaoEntrar = tk.Button(janelaCadUsuario, width=16, text="Cadastrar", command=button_click, background="White",
+    botaoCadastrar = tk.Button(janelaCadUsuario, width=16, text="Cadastrar", command=cadastrar_usuario, background="White",
                          highlightcolor="White")
-    botaoEntrar.grid(row=7, column=1, sticky=tk.W)
+
+    botaoCadastrar.grid(row=7, column=1, sticky=tk.W)
 
     janelaCadUsuario.mainloop()

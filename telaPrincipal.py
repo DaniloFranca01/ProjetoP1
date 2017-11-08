@@ -3,6 +3,7 @@ import tkinter.filedialog
 import telaCadastroPaciente as cadPaciente
 import listaPacientes as listPacientes
 import telaExcluirPaciente as excPaciente
+
 def construtorPrincipal(niveldeAcesso):
     def cadastrar_click():
         cadPaciente.construtorFormulario()

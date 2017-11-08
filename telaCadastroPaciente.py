@@ -8,7 +8,7 @@ def construtorFormulario():
     janeCadastroPaciente = tk.Tk()
     janeCadastroPaciente.title("Cadastro de paciente")
     janeCadastroPaciente["bg"] = "#cbfbfe"
-    janeCadastroPaciente.geometry("450x200+300+300")
+    janeCadastroPaciente.geometry("300x200+300+300")
 
     lbNome = tk.Label(janeCadastroPaciente, text="Nome: ")
     lbNome.grid(row = 1)

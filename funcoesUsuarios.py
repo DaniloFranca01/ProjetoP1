@@ -1,4 +1,5 @@
 from bibliotecaFuncoes import criptografarInformacao,descriptografarInformacao
+from tkinter import messagebox
 
 def recebeUsuario(login,senha):
         arquivo = open("usuarios.txt", "r")
@@ -31,6 +32,7 @@ def cadastrarUsuario(login,senha,nivel):
     arquivo = open("usuarios.txt", "w")
     arquivo.writelines(conteudo)
     arquivo.close()
+    messagebox.showinfo("Informação","Usuario cadastrado")
 
 def carregarUsuarios():
     arquivo = open("usuarios.txt", "r")

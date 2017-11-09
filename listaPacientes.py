@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.ttk import *
+import funcoesPacientes as funcPaciente
 
 def construtorListaPacientes():
     janelaListaPacientes = Tk()
@@ -27,8 +28,10 @@ def construtorListaPacientes():
     tabelaPacientes.column('tipoSanguineo', anchor='center', width=100)
     tabelaPacientes.heading('informacoes', text='Info')
     tabelaPacientes.column('informacoes', anchor='center', width=100)
+    funcPaciente.carregarPacientes(tabelaPacientes)
     tabelaPacientes.grid(sticky = (N,S,W,E))
     tabelaPacientes.grid_rowconfigure(0, weight = 1)
     tabelaPacientes.grid_columnconfigure(0, weight = 1)
+
 
     janelaListaPacientes.mainloop()

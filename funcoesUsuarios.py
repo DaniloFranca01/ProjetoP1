@@ -19,11 +19,50 @@ def recebeUsuario(login,senha):
             linha = arquivo.readline()
 
 def cadastrarUsuario(login,senha,nivel):
-    arquivo = open("usuarios.txt", "w")
+    arquivo = open("usuarios.txt", "r")
+
+    conteudo = arquivo.readlines()
+
     loginCript = criptografarInformacao(login)
     senhaCript = criptografarInformacao(senha)
     nivelCript = criptografarInformacao(nivel)
-    arquivo.write(loginCript+";"+senhaCript+";"+nivelCript)
+    conteudo.append(loginCript+";"+senhaCript+";"+nivelCript+"\n")
+
+    arquivo = open("usuarios.txt", "w")
+    arquivo.writelines(conteudo)
+    arquivo.close()
+
+def carregarUsuarios():
+    arquivo = open("usuarios.txt", "r")
+    linha = arquivo.readline()
+    loginCriptografado = ""
+    senhaCriptografada = ""
+    nivelAcessoCriptografado = ""
+    dicionarioUsuarios = {}
+    while linha != "":
+        contador = 0
+        for numero in linha:
+            if numero != ";" and numero != "\n" and contador == 0:
+                loginCriptografado = loginCriptografado + numero
+            elif numero != ";" and numero != "\n" and contador == 1:
+                senhaCriptografada = senhaCriptografada + numero
+            elif numero != ";" and numero != "\n" and contador == 2:
+                nivelAcessoCriptografado = nivelAcessoCriptografado + numero
+            elif numero == ";":
+                contador += 1
+        login = descriptografarInformacao(loginCriptografado)
+        senha = descriptografarInformacao(senhaCriptografada)
+        nivelAcesso = descriptografarInformacao(nivelAcessoCriptografado)
+        dicionarioUsuarios[login] = [senha, nivelAcesso]
+        loginCriptografado = ""
+        senhaCriptografada = ""
+        nivelAcessoCriptografado = ""
+
+        linha = arquivo.readline()
+    arquivo.close()
+    return dicionarioUsuarios
+
+
 
 
 

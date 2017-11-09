@@ -3,8 +3,9 @@ import tkinter.messagebox
 import funcoesPacientes as fpc
 def construtorDelFacientes():
     def button_click():
-        tk.messagebox.showinfo("ATENÇÃO","Deseja excluir o paciente: ?")
-        fpc.excluirPaciente(edCpf.get())
+        resultado = tk.messagebox.askquestion("ATENÇÃO","Deseja excluir o paciente: ?",icon='warning')
+        if resultado == "yes":
+            fpc.excluirPaciente(edCpf.get())
 
     janelaExcluirPaciente = tk.Tk()
     janelaExcluirPaciente.title("Excluir paciente")
@@ -20,3 +21,5 @@ def construtorDelFacientes():
     botaoCadastrar.grid(row=2,column = 2)
 
     janelaExcluirPaciente.mainloop()
+
+construtorDelFacientes()

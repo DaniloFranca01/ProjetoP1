@@ -46,4 +46,7 @@ botaoEntrar.grid(row=3,column=1,sticky = W)
 botaoEntrar = Button(janelaLogin, width = 16, text = "Novo Usuario", command = novo_click, background = "White",highlightcolor = "White")
 botaoEntrar.grid(row=3,column=2,sticky = W)
 
+usuarios = funcUsuario.carregarUsuarios()
+
 janelaLogin.mainloop()
+

@@ -39,5 +39,5 @@ def construtorPrincipal(niveldeAcesso):
     botaoMostrar.grid(row=2,column=4)
 
     botaoEditar.mainloop()
-construtorPrincipal(0)
+
 

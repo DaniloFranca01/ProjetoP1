@@ -91,8 +91,19 @@ def criptografarInformacao(informacao):
 
 def descriptografarInformacao(informacao):
     informacaoDescriptografada = ""
-    for numero in informacao:
-        informacaoDescriptografada = informacaoDescriptografada+incrementaDescriptografia(numero)
+    partedaInformacao = ""
+    tamanhoInformacao = len(informacao)
+    contador = 0
+    while contador <= tamanhoInformacao:
+        if (contador == tamanhoInformacao):
+            informacaoDescriptografada = informacaoDescriptografada+incrementaDescriptografia(partedaInformacao)
+            partedaInformacao = ""
+        elif informacao[contador] == " ":
+            informacaoDescriptografada = informacaoDescriptografada+incrementaDescriptografia(partedaInformacao)
+            partedaInformacao = ""
+        elif informacao[contador] != " ":
+            partedaInformacao = partedaInformacao+informacao[contador]
+        contador += 1
     return informacaoDescriptografada
 
 

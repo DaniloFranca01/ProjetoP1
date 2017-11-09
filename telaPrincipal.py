@@ -1,5 +1,5 @@
+#coding: utf-8
 import tkinter as tk
-import tkinter.filedialog
 import telaCadastroPaciente as cadPaciente
 import listaPacientes as listPacientes
 import telaExcluirPaciente as excPaciente
@@ -14,17 +14,17 @@ def construtorPrincipal(niveldeAcesso):
     def excluir_click():
         excPaciente.construtorDelFacientes()
 
-    janelaPrincipal = tk.Tk()
+    janelaPrincipal = tk.Toplevel()
     janelaPrincipal.title("Medical Manager")
     janelaPrincipal["bg"] = "#cbfbfe"
     janelaPrincipal.geometry("658x360+300+300")
 
-    imagem = tk.PhotoImage(file="smm.png")
-    lbImagem = tk.Label(janelaPrincipal, image=imagem)
-    lbImagem.imagem = imagem
+    logo = tk.PhotoImage(file="smm.png")
+    lbImagem = tk.Label(janelaPrincipal, image=logo)
+    lbImagem.logo = logo
     lbImagem["height"] = 311
     lbImagem["width"] = 658
-    lbImagem.grid(row=0, columnspan=300)
+    lbImagem.grid(row=1, columnspan=300)
 
     botaoCadastrar = tk.Button(janelaPrincipal, width = 16,height = 2, text = "Cadastrar Paciente", command = cadastrar_click, background = "White",highlightcolor = "White")
     botaoCadastrar.grid(row=2,column=1)
@@ -38,6 +38,6 @@ def construtorPrincipal(niveldeAcesso):
     botaoMostrar = tk.Button(janelaPrincipal, width = 16,height = 2, text = "Mostrar Paciente", command = listar_click, background = "White",highlightcolor = "White")
     botaoMostrar.grid(row=2,column=4)
 
-    botaoEditar.mainloop()
+    janelaPrincipal.mainloop()
 
 

@@ -21,5 +21,3 @@ def construtorDelFacientes():
     botaoCadastrar.grid(row=2,column = 2)
 
     janelaExcluirPaciente.mainloop()
-
-construtorDelFacientes()

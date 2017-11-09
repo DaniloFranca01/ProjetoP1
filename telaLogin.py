@@ -7,8 +7,9 @@ import funcoesUsuarios as funcUsuario
 def logar_click():
     loginUsuario = edLogin.get()
     senhaUsuario = edSenha.get()
-    niveldeAcesso = funcUsuario.recebeUsuario(loginUsuario,senhaUsuario)
-    if niveldeAcesso > 0:
+    niveldeAcesso = funcUsuario.recebeUsuario(loginUsuario,senhaUsuario,dicUsuarios)
+    if niveldeAcesso != None:
+        niveldeAcesso = int(niveldeAcesso)
         telaPrincipal.construtorPrincipal(niveldeAcesso)
 
 def novo_click():
@@ -46,7 +47,7 @@ botaoEntrar.grid(row=3,column=1,sticky = W)
 botaoEntrar = Button(janelaLogin, width = 16, text = "Novo Usuario", command = novo_click, background = "White",highlightcolor = "White")
 botaoEntrar.grid(row=3,column=2,sticky = W)
 
-usuarios = funcUsuario.carregarUsuarios()
+dicUsuarios = funcUsuario.carregarUsuarios()
 
 janelaLogin.mainloop()
 

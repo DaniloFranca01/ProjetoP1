@@ -1,9 +1,10 @@
 import tkinter as tk
 import funcoesPacientes as fpc
-def construtorFormulario():
+import telaPrincipal as telaPrincipal
+def construtorFormulario(dicionarioPacientes):
     def button_click():
         tuplaPaciente = (edCpf.get(),edNome.get(),edRg.get(),edSexo.get(),edTelefone.get(),edEndereco.get(),edTipoSanguineo.get(),edInformacoesGerais.get())
-        fpc.CadastrasPaciente(tuplaPaciente)
+        fpc.CadastrarPacienteDicionario(edCpf.get(),tuplaPaciente,dicionarioPacientes)
 
     janeCadastroPaciente = tk.Tk()
     janeCadastroPaciente.title("Cadastro de paciente")
@@ -64,5 +65,6 @@ def construtorFormulario():
 
 
     janeCadastroPaciente.mainloop()
-
+    if dicionarioPacientes != {} and telaPrincipal.dicionarioPacientes != {} :
+        telaPrincipal.dicionarioPacientes = dicionarioPacientes
 

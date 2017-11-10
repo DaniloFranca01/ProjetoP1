@@ -1,9 +1,10 @@
 #coding: utf-8
 from bibliotecaFuncoes import criptografarInformacao,descriptografarInformacao
 from tkinter import messagebox
+import telaCadastroPaciente as telaCadPaciente
 
-def CadastrasPaciente(tuplaPaciente):
-    arqPacientes = open("usuarios.txt", "r")
+def CadastrasPacienteTxt(dicionarioPacientes):
+    arqPacientes = open("pacientes.txt", "r")
     conteudo = arqPacientes.readlines()
 
     cpf = ""
@@ -15,7 +16,7 @@ def CadastrasPaciente(tuplaPaciente):
     tipoSanguineo = ""
     informacoesGerais = ""
     contador = 0
-    for valor in tuplaPaciente:
+    for valor in dicionarioPacientes:
         if contador == 0:
             cpf = criptografarInformacao(valor)
         elif contador == 1:
@@ -35,11 +36,15 @@ def CadastrasPaciente(tuplaPaciente):
         contador+=1
 
     conteudo.append(cpf + ";" + nome + ";" + rg + ";" + sexo + ";" + telefone + ";" + endereco + ";" + tipoSanguineo + ";" + informacoesGerais+"\n")
-    arqPacientes = open("usuarios.txt", "w")
+    arqPacientes = open("pacientes.txt", "w")
     arqPacientes.writelines(conteudo)
     arqPacientes.close()
-    messagebox.showinfo("Informação", "Paciente cadastrado")
 
+
+def CadastrarPacienteDicionario(cpf,tuplaPaciente,dicionarioPaciente):
+    dicionarioPaciente[cpf] = tuplaPaciente
+    messagebox.showinfo(telaCadPaciente,"Informação", "Paciente cadastrado")
+    return dicionarioPaciente
 
 def atualizarPaciente(cpf,nome,rg,sexo,telefone,endereco,tipoSanguineo,informacoesGerais):
     arquivo = open("pacientes.txt", "r")
@@ -90,6 +95,10 @@ def excluirPaciente(cpf):
     return resultado
 
 def carregarPacientes():
+    '''
+    Função que carrega os pacientes do TXT para o dicionario de pacientes
+
+    '''
     arquivo = open("pacientes.txt", "r")
     dicionarioPacientes={}
     linha = arquivo.readline()
@@ -131,7 +140,7 @@ def carregarPacientes():
         endereco = descriptografarInformacao(enderecoCriptografado)
         tipoSanguineo = descriptografarInformacao(tipoSanguineoCriptografado)
         informacoesGerais = descriptografarInformacao(informacoesGeraisCriptografado)
-        dicionarioPacientes[cpf] = [nome, rg, sexo, telefone, endereco, tipoSanguineo, informacoesGerais]
+        dicionarioPacientes[cpf] = (nome, rg, sexo, telefone, endereco, tipoSanguineo, informacoesGerais)
         cpfCriptografado = ""
         nomeCriptografado = ""
         rgCriptografado = ""

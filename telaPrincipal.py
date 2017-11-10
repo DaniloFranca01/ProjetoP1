@@ -3,16 +3,19 @@ import tkinter as tk
 import telaCadastroPaciente as cadPaciente
 import listaPacientes as listPacientes
 import telaExcluirPaciente as excPaciente
-
+import funcoesPacientes as funcPacientes
+dicionarioPacientes = {}
 def construtorPrincipal(niveldeAcesso):
     def cadastrar_click():
-        cadPaciente.construtorFormulario()
+        cadPaciente.construtorFormulario(dicionarioPacientes)
     def editar_click():
         cadPaciente.construtorFormulario()
     def listar_click():
-        listPacientes.construtorListaPacientes()
+        listPacientes.construtorListaPacientes(dicionarioPacientes)
     def excluir_click():
         excPaciente.construtorDelFacientes()
+    def logout_click():
+        funcPacientes.CadastrasPacienteTxt(dicionarioPacientes)
 
     janelaPrincipal = tk.Toplevel()
     janelaPrincipal.title("Medical Manager")
@@ -37,6 +40,12 @@ def construtorPrincipal(niveldeAcesso):
 
     botaoMostrar = tk.Button(janelaPrincipal, width = 16,height = 2, text = "Mostrar Paciente", command = listar_click, background = "White",highlightcolor = "White")
     botaoMostrar.grid(row=2,column=4)
+
+    botaoLogout = tk.Button(janelaPrincipal, width=16, height=2, text="Logout", command=logout_click,
+                             background="White", highlightcolor="White")
+    botaoLogout.grid(row=2, column=5)
+
+    #dicionarioPacientes = funcPacientes.carregarPacientes()
 
     janelaPrincipal.mainloop()
 

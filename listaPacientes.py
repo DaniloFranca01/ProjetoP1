@@ -2,10 +2,10 @@ from tkinter import *
 from tkinter.ttk import *
 import funcoesPacientes as funcPaciente
 
-def construtorListaPacientes():
-    def listarDicionario(dicionario):
+def construtorListaPacientes(dicionarioPacientes):
+    def listarDicionario(dicionarioPacientes):
         contDicionario = 0
-        for cpf in dicionario.keys():
+        for cpf in dicionarioPacientes.keys():
             contador = 0
             cpf1 = ""
             nome = ""
@@ -15,7 +15,7 @@ def construtorListaPacientes():
             endereco = ""
             tipoSanguineo = ""
             informacoesGerais = ""
-            for numero in dicionario[cpf]:
+            for numero in dicionarioPacientes[cpf]:
                 cpf1 = cpf
                 if contador == 0:
                     nome = nome + numero
@@ -76,7 +76,7 @@ def construtorListaPacientes():
     tabelaPacientes.grid_rowconfigure(0, weight = 1)
     tabelaPacientes.grid_columnconfigure(0, weight = 1)
 
-    tabela = funcPaciente.carregarPacientes()
-    listarDicionario(tabela)
+    #tabela = funcPaciente.carregarPacientes()
+    listarDicionario(dicionarioPacientes)
 
     janelaListaPacientes.mainloop()

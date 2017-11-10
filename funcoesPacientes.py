@@ -1,9 +1,11 @@
 #coding: utf-8
 from bibliotecaFuncoes import criptografarInformacao,descriptografarInformacao
-from tkinter import *
-from tkinter.ttk import *
+from tkinter import messagebox
 
 def CadastrasPaciente(tuplaPaciente):
+    arqPacientes = open("usuarios.txt", "r")
+    conteudo = arqPacientes.readlines()
+
     cpf = ""
     nome = ""
     rg = ""
@@ -32,10 +34,11 @@ def CadastrasPaciente(tuplaPaciente):
             informacoesGerais = criptografarInformacao(valor)
         contador+=1
 
-    arqPacientes = open("pacientes.txt", "w")
-    arqPacientes.write(cpf+";"+nome+";"+rg+";"+sexo+";"+telefone+";"+endereco+";"+tipoSanguineo+";"+informacoesGerais)
-    arqPacientes.flush()
+    conteudo.append(cpf + ";" + nome + ";" + rg + ";" + sexo + ";" + telefone + ";" + endereco + ";" + tipoSanguineo + ";" + informacoesGerais+"\n")
+    arqPacientes = open("usuarios.txt", "w")
+    arqPacientes.writelines(conteudo)
     arqPacientes.close()
+    messagebox.showinfo("Informação", "Paciente cadastrado")
 
 
 def atualizarPaciente(cpf,nome,rg,sexo,telefone,endereco,tipoSanguineo,informacoesGerais):
@@ -86,7 +89,7 @@ def excluirPaciente(cpf):
             resultado = "Paciente provavelmente não cadastrado!"
     return resultado
 
-def carregarPacientes(tabela):
+def carregarPacientes():
     arquivo = open("pacientes.txt", "r")
     dicionarioPacientes={}
     linha = arquivo.readline()
@@ -129,9 +132,8 @@ def carregarPacientes(tabela):
         tipoSanguineo = descriptografarInformacao(tipoSanguineoCriptografado)
         informacoesGerais = descriptografarInformacao(informacoesGeraisCriptografado)
         dicionarioPacientes[cpf] = [nome, rg, sexo, telefone, endereco, tipoSanguineo, informacoesGerais]
-        tabela.insert("cpf","nome", "rg", "sexo", "telefone", "endereco", "tipoSanguineo", "informacoes", values(cpf,nome, rg, sexo, telefone, endereco, tipoSanguineo, informacoesGerais))
         cpfCriptografado = ""
-        nomeCriptografada = ""
+        nomeCriptografado = ""
         rgCriptografado = ""
         sexoCriptografado = ""
         telefoneCriptografado = ""
@@ -141,6 +143,8 @@ def carregarPacientes(tabela):
 
         linha = arquivo.readline()
     arquivo.close()
+    return dicionarioPacientes
+
 
 '''CadastrasPaciente(("53409360","Danilo","8637637","3010","R5","O+","deprecao"))
 resultado2 = atualizarPaciente("53409360","kkkkk","99999","5000","R1","A+","Curado")

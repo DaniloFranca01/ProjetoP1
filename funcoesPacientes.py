@@ -33,7 +33,7 @@ def CadastrasPacienteTxt(dicionarioPacientes):
             tipoSanguineo = criptografarInformacao(valor)
         elif contador == 7:
             informacoesGerais = criptografarInformacao(valor)
-        contador+=1
+    contador+=1
 
     conteudo.append(cpf + ";" + nome + ";" + rg + ";" + sexo + ";" + telefone + ";" + endereco + ";" + tipoSanguineo + ";" + informacoesGerais+"\n")
     arqPacientes = open("pacientes.txt", "w")
@@ -43,7 +43,7 @@ def CadastrasPacienteTxt(dicionarioPacientes):
 
 def CadastrarPacienteDicionario(cpf,tuplaPaciente,dicionarioPaciente):
     dicionarioPaciente[cpf] = tuplaPaciente
-    messagebox.showinfo(telaCadPaciente,"Informação", "Paciente cadastrado")
+    messagebox.showinfo("Informação", "Paciente cadastrado")
     return dicionarioPaciente
 
 def atualizarPaciente(cpf,nome,rg,sexo,telefone,endereco,tipoSanguineo,informacoesGerais):

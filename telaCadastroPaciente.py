@@ -1,13 +1,19 @@
 import tkinter as tk
 import funcoesPacientes as fpc
 import telaPrincipal as telaPrincipal
-def construtorFormulario(dicionarioPacientes):
-    def button_click():
+def construtorFormulario(dicionarioPacientes,parametro):
+    def cadastrar_click():
         tuplaPaciente = (edCpf.get(),edNome.get(),edRg.get(),edSexo.get(),edTelefone.get(),edEndereco.get(),edTipoSanguineo.get(),edInformacoesGerais.get())
         fpc.CadastrarPacienteDicionario(edCpf.get(),tuplaPaciente,dicionarioPacientes)
+    def editar_click():
+        parametro = parametro
+        #teste
 
     janeCadastroPaciente = tk.Tk()
-    janeCadastroPaciente.title("Cadastro de paciente")
+    if parametro == 0:
+        janeCadastroPaciente.title("Cadastro de paciente")
+    else:
+        janeCadastroPaciente.title("Editar paciente")
     janeCadastroPaciente["bg"] = "#cbfbfe"
     janeCadastroPaciente.geometry("300x200+300+300")
 
@@ -60,8 +66,12 @@ def construtorFormulario(dicionarioPacientes):
     edInformacoesGerais = tk.Entry(janeCadastroPaciente)
     edInformacoesGerais.grid(row = 8,column = 2)
 
-    botaoCadastrar = tk.Button(janeCadastroPaciente, width = 16, text = "Cadastrar", command = button_click, background = "White",highlightcolor = "White")
-    botaoCadastrar.grid(row=9,column = 2)
+    if parametro == 0:
+        botaoCadastrar = tk.Button(janeCadastroPaciente, width = 16, text = "Cadastrar", command = cadastrar_click, background = "White",highlightcolor = "White")
+        botaoCadastrar.grid(row=9,column = 2)
+    else:
+        botaoEditar = tk.Button(janeCadastroPaciente, width=16, text="Editar", command=editar_click, background="White", highlightcolor="White")
+        botaoEditar.grid(row=9, column=2)
 
 
     janeCadastroPaciente.mainloop()

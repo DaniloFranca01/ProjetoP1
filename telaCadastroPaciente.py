@@ -5,6 +5,12 @@ import tkinter.ttk as ttk
 import bibliotecaFuncoes as bibliotecaFuncoes
 
 def construtorFormulario(usuario,dicionario,parametro):
+    '''
+    Função que controi a interface de cadastro/atualizacao de paciente
+    recebe como parametro o usuario o dicionario e o parametro
+    o parametro indica se o formulario vai ser para cadastro se o valor for 0 sera cadastro
+    caso contrario sera edição
+    '''
     def pegarCpf():
         valorCombox = cbCpf.get()
         cpf = ""
@@ -16,6 +22,9 @@ def construtorFormulario(usuario,dicionario,parametro):
         return cpf
 
     def limparEdits():
+        '''
+        Função que limpa os edits do formulario
+        '''
         if parametro == 0:
             edCpf.delete(0,tk.END)
         edNome.delete(0, tk.END)
@@ -27,6 +36,9 @@ def construtorFormulario(usuario,dicionario,parametro):
         edInformacoesGerais.delete(0, tk.END)
 
     def cadastrar_click():
+        '''
+          Função do evento cadastrar que chama a funcao de cadastro
+        '''
         tuplaPaciente = (edCpf.get(),edNome.get(),edRg.get(),edSexo.get(),edTelefone.get(),edEndereco.get(),edTipoSanguineo.get(),edInformacoesGerais.get())
         fpc.CadastrarPacienteDicionario(edCpf.get(),tuplaPaciente,dicionario)
         bibliotecaFuncoes.logdeEventos(usuario,"Cadastrou um paciente"+"\n")
@@ -34,6 +46,9 @@ def construtorFormulario(usuario,dicionario,parametro):
 
 
     def editar_click():
+        '''
+            Função do evento editar que chama a funcao de edicao
+        '''
         tuplaPaciente = (edNome.get(), edRg.get(), edSexo.get(), edTelefone.get(), edEndereco.get(), edTipoSanguineo.get(),edInformacoesGerais.get())
         cpf = pegarCpf()
         fpc.atualizarPacientesDicionario(cpf,dicionario,tuplaPaciente)
@@ -41,6 +56,9 @@ def construtorFormulario(usuario,dicionario,parametro):
         limparEdits()
 
     def selecionaPaciente(parametro):
+        '''
+        Função do evento de seleçao do combobox recebe como parametro algo nao usado
+        '''
         cpf = pegarCpf()
         if cpf in dicionario:
             limparEdits()

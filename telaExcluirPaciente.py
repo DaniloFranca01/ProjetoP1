@@ -6,7 +6,13 @@ import tkinter.ttk as ttk
 import bibliotecaFuncoes as bibliotecaFuncoes
 
 def construtorDelPacientes(usuario,dicionario):
+    '''
+    Função que controi a interface de exclusao de pacientes recebe como parametro o usuario e o dicionario de pacientes
+    '''
     def pegarCpf():
+        '''
+        Função que pega o cpf do combobox
+        '''
         valorCombox = cbCpf.get()
         cpf = ""
         for letra in valorCombox:
@@ -17,6 +23,9 @@ def construtorDelPacientes(usuario,dicionario):
         return cpf
 
     def button_click():
+        '''
+        Função do evento do botao que chama a funcao de exclusao
+        '''
         resultado = tk.messagebox.askquestion("ATENÇÃO","Deseja excluir o paciente: ?",icon='warning')
         if resultado == "yes":
             cpf = pegarCpf()

@@ -2,15 +2,25 @@
 import tkinter as tk
 import funcoesUsuarios as userfunc
 import bibliotecaFuncoes as bibliotecaFuncoes
+import telaMenuUsuarios as menuUsuarios
+import telaPrincipal as telaPrincip
+dicionarioUsuarios = {}
 
-def construtorCadastoUsuario():
+def construtorCadastoUsuario(dicionario):
+    '''
+    Função que controi a interface de cadastro de usuario
+    recebe como parametro o dicionario de usuarios
+    '''
     def cadastrar_usuario():
+        '''
+        Função do evento click do botao cadastrar que chama a funcao de cadastro
+        '''
         loginUsuario = edLogin.get()
         senhaUsuario = edSenha.get()
         tuplaAcesso = ()
         tuplaAcesso = listbNicelAcesso.curselection()[0]
         niveldeAcesso = int(tuplaAcesso)
-        userfunc.cadastrarUsuario(loginUsuario,senhaUsuario,str(niveldeAcesso))
+        dicionarioUsuarios = userfunc.cadastrarUsuarioDicionario(loginUsuario,(senhaUsuario,niveldeAcesso),dicionario)
 
     janelaCadUsuario = tk.Tk()
     janelaCadUsuario.title("Cadastro de Usuário")
@@ -44,3 +54,5 @@ def construtorCadastoUsuario():
     botaoCadastrar.grid(row=7, column=1, sticky=tk.W)
 
     janelaCadUsuario.mainloop()
+    if dicionario != {} and telaPrincip.dicionarioUsuarios != {} :
+        telaPrincip.dicionarioUsuarios = dicionario

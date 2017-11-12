@@ -5,7 +5,13 @@ import bibliotecaFuncoes as bibliotecaFuncoes
 
 
 def construtorListaPacientes(usuario,dicionarioPacientes):
+    '''
+    Função que constroi a tela de listar pacientes recebe de parametro o usuario e o dicionario de pacientes
+    '''
     def listarDicionario(dicionarioPacientes):
+        '''
+        Função que alimenta a tabela com os pacientes, recebe de parametro o dicionario de pacientes
+        '''
         contDicionario = 0
         for cpf in dicionarioPacientes.keys():
             contador = 0
@@ -48,6 +54,9 @@ def construtorListaPacientes(usuario,dicionarioPacientes):
         contDicionario += 1
 
     def imprimir_click():
+        '''
+        Função do evento imprimir que chama a funcao de imprecao de pacientes em TXT sem criptografia
+        '''
         funcPaciente.imprimePacientes(dicionarioPacientes)
 
     janelaListaPacientes = tk.Tk()

@@ -1,5 +1,9 @@
 from datetime import datetime
+
 def existeEm(carac, string):
+    '''
+    Função que procura um caracter em uma string, Função complemento da funcao tokenizar
+    '''
     for elemento in string:
         if elemento == carac:
             return True
@@ -7,6 +11,9 @@ def existeEm(carac, string):
 
 
 def tokenizar(frase, separadores):
+    '''
+    Função que tokeniza uma frase em uma lista
+    '''
     lista = []
     palavra = ""
     for letra in frase:
@@ -22,29 +29,12 @@ def tokenizar(frase, separadores):
 
     return lista
 
-def criptografarLogin(login,senha):
-    loginCriptografado = ""
-    senhaCriptogrfada = ""
-    primeiraVez = True
-    for letra in login:
-        if primeiraVez:
-            loginCriptografado = str(ord(letra)+37)
-            primeiraVez = False
-        else:
-            loginCriptografado = loginCriptografado + " " + str(ord(letra) + 37)
-
-    primeiraVez = True
-    for letra in senha:
-        if primeiraVez:
-            senhaCriptogrfada = str(ord(letra)+37)
-            primeiraVez = False
-        else:
-            senhaCriptogrfada = senhaCriptogrfada + " " + str(ord(letra) + 37)
-
-    arqUsuarios = open("usuarios.txt", "w")
-    arqUsuarios.write(loginCriptografado+";"+senhaCriptogrfada)
 
 def incrementaDescriptografia(letraCodigoANSII):
+    '''
+    Função que axilia a criptografia de uma informacao
+    recebe como parametro o codigo da tabela ANSII
+    '''
     numeroCriptografado = int(letraCodigoANSII) - 37
     letraCriptografada = chr(numeroCriptografado)
     return letraCriptografada
@@ -79,6 +69,10 @@ def descriptografarLogin():
 
 
 def criptografarInformacao(informacao):
+    '''
+    Função que criptografa uma informacao
+    recebe como parametro a informacao a ser criptografada
+    '''
     informacaoCriptografada = ""
     primeiraVez = True
     for letra in informacao:
@@ -91,6 +85,10 @@ def criptografarInformacao(informacao):
     return informacaoCriptografada
 
 def descriptografarInformacao(informacao):
+    '''
+    Função que descriptografa uma informacao
+    recebe como parametro a informacao a ser descriptografada
+    '''
     informacaoDescriptografada = ""
     partedaInformacao = ""
     tamanhoInformacao = len(informacao)
@@ -108,6 +106,10 @@ def descriptografarInformacao(informacao):
     return informacaoDescriptografada
 
 def logdeEventos(usuario,evento):
+    '''
+    Função que salva em um TXT o log de toda atividade do usuario
+    recebe como parametro o usuario e o evento
+    '''
     arquivo = open("log.txt", "r")
     conteudo = arquivo.readlines()
 
@@ -123,5 +125,3 @@ def logdeEventos(usuario,evento):
     arquivo.writelines(conteudo)
     arquivo.close()
 
-#criptografarLogin("Danilo","123")
-#descriptografarLogin()

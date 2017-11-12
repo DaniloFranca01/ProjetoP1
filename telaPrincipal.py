@@ -5,36 +5,72 @@ import listaPacientes as listPacientes
 import telaExcluirPaciente as excPaciente
 import funcoesPacientes as funcPacientes
 import telaMenuUsuarios as menuUsuarios
+import funcoesUsuarios as funcUsuarios
 from tkinter import messagebox
 
 dicionarioPacientes = {}
-
+dicionarioUsuarios = {}
 def construtorPrincipal(login,niveldeAcesso,parametro):
+    '''
+    funcao construtora da tela principal recebe como parametro login,niveldeAcesso,parametro
+    o parametro informa que é a primeira vez para poder carregar os pacientes e os usuarios
+    '''
+
     def cadastrar_click():
+        '''
+        funcao do Evento do botao cadastrar que chama o formulario de cadastro de pacientes
+        '''
         if niveldeAcesso != 0 and niveldeAcesso != 1 and niveldeAcesso != 2:
             messagebox.showinfo("Informação", "Voce não tem permissão para essa operação", icon='warning')
         else:
             cadPaciente.construtorFormulario(login,dicionarioPacientes,0)
+
+
     def editar_click():
+        '''
+        funcao do Evento do botao editar que chama o formulario de edicao de pacientes
+        '''
         if niveldeAcesso != 0 and niveldeAcesso != 1:
             messagebox.showinfo("Informação", "Voce não tem permissão para essa operação", icon='warning')
         else:
             cadPaciente.construtorFormulario(login,dicionarioPacientes,1)
+
+
     def listar_click():
+        '''
+        funcao do Evento do botao listar que chama o formulario de listagem de pacientes
+        '''
         listPacientes.construtorListaPacientes(login,dicionarioPacientes)
+
+
     def excluir_click():
+        '''
+        funcao do Evento do botao excluir que chama o formulario de exclusao de pacientes
+        '''
         if niveldeAcesso != 0 and niveldeAcesso != 1:
             messagebox.showinfo("Informação", "Voce não tem permissão para essa operação", icon='warning')
         else:
             excPaciente.construtorDelPacientes(login,dicionarioPacientes)
+
+
     def logout_click():
+        '''
+        funcao do Evento do botao logout que chama salva as informacoes e fecha o programa
+        '''
         funcPacientes.CadastrasPacienteTxt(dicionarioPacientes)
+        funcUsuarios.cadastrarUsuariosTxt(dicionarioUsuarios)
         exit()
+
+
     def usuarios_click():
+        '''
+        funcao do Evento do botao de menu de usuario que chama o menu de usuario
+        '''
         if niveldeAcesso != 0 and niveldeAcesso != 1:
             messagebox.showinfo("Informação", "Voce não tem permissão para essa operação", icon='warning')
         else:
-            menuUsuarios.construtorFormulario(niveldeAcesso)
+            menuUsuarios.construtorFormulario(niveldeAcesso,dicionarioUsuarios)
+
 
     janelaPrincipal = tk.Toplevel()
     janelaPrincipal.title("Medical Manager")
@@ -70,6 +106,7 @@ def construtorPrincipal(login,niveldeAcesso,parametro):
 
     if parametro == 0:
         dicionarioPacientes = funcPacientes.carregarPacientes()
+        dicionarioUsuarios = funcUsuarios.carregarUsuarios()
 
     janelaPrincipal.mainloop()
 

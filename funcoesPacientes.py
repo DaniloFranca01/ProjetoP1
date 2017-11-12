@@ -4,6 +4,10 @@ from tkinter import messagebox
 import telaCadastroPaciente as telaCadPaciente
 
 def CadastrasPacienteTxt(dicionarioPacientes):
+    '''
+    Função que cadastra os pacientes do dicionario em um TXT criptografado
+    recebe como parametro o dicionario de pacientes
+    '''
     arqPacientes = open("pacientes.txt", "r")
     conteudo = arqPacientes.readlines()
 
@@ -32,12 +36,20 @@ def CadastrasPacienteTxt(dicionarioPacientes):
 
 
 def CadastrarPacienteDicionario(cpf,tuplaPaciente,dicionarioPaciente):
+    '''
+    Função que cadastra um paciente no dicionario
+    recebe como parametro o cpf, uma tupla de valores, e o dicionario de pacientes
+    '''
     dicionarioPaciente[cpf] = tuplaPaciente
     messagebox.showinfo("Informação", "Paciente cadastrado")
     return dicionarioPaciente
 
 
 def atualizarPacientesDicionario(cpf,dicionario,valores):
+    '''
+    Função que atualiza um paciente no dicionario
+    recebe como parametro o cpf, o dicionario de pacientes e uma tupla de valores
+    '''
     if cpf in dicionario.keys():
         del(dicionario[cpf])
         dicionario[cpf] = valores
@@ -46,13 +58,22 @@ def atualizarPacientesDicionario(cpf,dicionario,valores):
 
 
 def excluiPacienteDicionario(cpf,dicionario):
+    '''
+    Função que exclui um paciente do dicionario
+    recebe como parametro o cpf e o dicionario de pacientes
+    '''
     if cpf in dicionario.keys():
         del(dicionario[cpf])
         messagebox.showinfo("Informação", "Paciente Excluido")
     else:
         messagebox.showinfo("Informação", "Paciente Não encontrado")
 
+
 def imprimePacientes(dicionario):
+    '''
+    Função que imprime em um TXT as informacoes de todos os pacientes sem criptografia
+    recebe como parametro o dicionario de pacientes
+    '''
     arqPacientes = open("impressaopacientes.txt", "r")
     conteudo = arqPacientes.readlines()
     for valor in dicionario:
@@ -69,10 +90,11 @@ def imprimePacientes(dicionario):
     arqPacientes = open("impressaopacientes.txt", "w")
     arqPacientes.writelines(conteudo)
     arqPacientes.close()
+
+
 def carregarPacientes():
     '''
     Função que carrega os pacientes do TXT para o dicionario de pacientes
-
     '''
     arquivo = open("pacientes.txt", "r")
     dicionarioPacientes={}

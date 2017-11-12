@@ -4,8 +4,12 @@ import telaPrincipal as telaPrincipal
 import funcoesUsuarios as funcUsuario
 
 def logar_click():
+    '''
+    Função do evento do botao logar que chama o formulario principal
+    '''
     loginUsuario = edLogin.get()
     senhaUsuario = edSenha.get()
+    dicUsuarios = funcUsuario.carregarUsuarios()
     niveldeAcesso = funcUsuario.recebeUsuario(loginUsuario,senhaUsuario,dicUsuarios)
     if niveldeAcesso != None:
         niveldeAcesso = int(niveldeAcesso)
@@ -38,8 +42,6 @@ edSenha.grid(row = 2,column = 1, sticky = W)
 
 botaoEntrar = Button(janelaLogin, width = 16, text = "Logar", command = logar_click, background = "White",highlightcolor = "White")
 botaoEntrar.grid(row=3,column=1,sticky = W)
-
-dicUsuarios = funcUsuario.carregarUsuarios()
 
 janelaLogin.mainloop()
 

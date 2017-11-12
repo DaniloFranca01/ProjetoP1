@@ -15,25 +15,15 @@ def CadastrasPacienteTxt(dicionarioPacientes):
     endereco = ""
     tipoSanguineo = ""
     informacoesGerais = ""
-    contador = 0
     for valor in dicionarioPacientes:
-        if contador == 0:
-            cpf = criptografarInformacao(valor)
-        elif contador == 1:
-            nome = criptografarInformacao(valor)
-        elif contador == 2:
-            rg = criptografarInformacao(valor)
-        elif contador == 3:
-            sexo = criptografarInformacao(valor)
-        elif contador == 4:
-            telefone = criptografarInformacao(valor)
-        elif contador == 5:
-            endereco = criptografarInformacao(valor)
-        elif contador == 6:
-            tipoSanguineo = criptografarInformacao(valor)
-        elif contador == 7:
-            informacoesGerais = criptografarInformacao(valor)
-    contador+=1
+        cpf = criptografarInformacao(valor)
+        nome = criptografarInformacao(dicionarioPacientes[valor][0])
+        rg = criptografarInformacao(dicionarioPacientes[valor][1])
+        sexo = criptografarInformacao(dicionarioPacientes[valor][2])
+        telefone = criptografarInformacao(dicionarioPacientes[valor][3])
+        endereco = criptografarInformacao(dicionarioPacientes[valor][4])
+        tipoSanguineo = criptografarInformacao(dicionarioPacientes[valor][5])
+        informacoesGerais = criptografarInformacao(dicionarioPacientes[valor][6])
 
     conteudo.append(cpf + ";" + nome + ";" + rg + ";" + sexo + ";" + telefone + ";" + endereco + ";" + tipoSanguineo + ";" + informacoesGerais+"\n")
     arqPacientes = open("pacientes.txt", "w")
@@ -45,6 +35,20 @@ def CadastrarPacienteDicionario(cpf,tuplaPaciente,dicionarioPaciente):
     dicionarioPaciente[cpf] = tuplaPaciente
     messagebox.showinfo("Informação", "Paciente cadastrado")
     return dicionarioPaciente
+
+def atualizarPacientesDicionario(cpf,dicionario,valores):
+    if cpf in dicionario.keys():
+        del(dicionario[cpf])
+        dicionario[cpf] = valores
+        messagebox.showinfo("Informação", "Paciente Editado")
+    return dicionario
+
+def excluiPacienteDicionario(cpf,dicionario):
+    if cpf in dicionario.keys():
+        del(dicionario[cpf])
+        messagebox.showinfo("Informação", "Paciente Excluido")
+    else:
+        messagebox.showinfo("Informação", "Paciente Não encontrado")
 
 def atualizarPaciente(cpf,nome,rg,sexo,telefone,endereco,tipoSanguineo,informacoesGerais):
     arquivo = open("pacientes.txt", "r")
@@ -59,7 +63,9 @@ def atualizarPaciente(cpf,nome,rg,sexo,telefone,endereco,tipoSanguineo,informaco
                 if cpf == (letraCriptografada + descriptografarInformacao(letraCriptografada) ):
                     arquivo.write("")
                     arquivo.close()
-                    CadastrasPaciente(cpf, nome, rg, sexo, telefone, endereco, tipoSanguineo, informacoesGerais)
+                    dicionario = {}
+                    dicionario[cpf] = (nome, rg, sexo, telefone, endereco, tipoSanguineo, informacoesGerais)
+                    CadastrasPacienteTxt(dicionario)
                     flag = True
 
         linha = arquivo.readline()

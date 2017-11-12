@@ -5,7 +5,7 @@ import listaPacientes as listPacientes
 import telaExcluirPaciente as excPaciente
 import funcoesPacientes as funcPacientes
 dicionarioPacientes = {}
-def construtorPrincipal(niveldeAcesso):
+def construtorPrincipal(login,niveldeAcesso,parametro):
     def cadastrar_click():
         cadPaciente.construtorFormulario(dicionarioPacientes,0)
     def editar_click():
@@ -13,7 +13,7 @@ def construtorPrincipal(niveldeAcesso):
     def listar_click():
         listPacientes.construtorListaPacientes(dicionarioPacientes)
     def excluir_click():
-        excPaciente.construtorDelFacientes()
+        excPaciente.construtorDelPacientes(dicionarioPacientes)
     def logout_click():
         funcPacientes.CadastrasPacienteTxt(dicionarioPacientes)
 
@@ -45,7 +45,8 @@ def construtorPrincipal(niveldeAcesso):
                              background="White", highlightcolor="White")
     botaoLogout.grid(row=2, column=5)
 
-    dicionarioPacientes = funcPacientes.carregarPacientes()
+    if parametro == 0:
+        dicionarioPacientes = funcPacientes.carregarPacientes()
 
     janelaPrincipal.mainloop()
 

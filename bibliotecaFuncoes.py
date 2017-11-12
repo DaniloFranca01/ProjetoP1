@@ -1,3 +1,4 @@
+import time
 def existeEm(carac, string):
     for elemento in string:
         if elemento == carac:
@@ -106,6 +107,10 @@ def descriptografarInformacao(informacao):
         contador += 1
     return informacaoDescriptografada
 
-
+def logdeEventos(hora,usuario,evento):
+    arquivo = open("log.txt", "w")
+    hora = time.time()
+    arquivo.write(hora + " " +usuario + " "+ evento )
+    arquivo.close()
 #criptografarLogin("Danilo","123")
 #descriptografarLogin()

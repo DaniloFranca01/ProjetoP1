@@ -1,4 +1,3 @@
-#coding: utf-8
 from tkinter import *
 import telaPrincipal as telaPrincipal
 import funcoesUsuarios as funcUsuario

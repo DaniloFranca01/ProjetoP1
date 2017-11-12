@@ -1,11 +1,10 @@
-#coding: utf-8
 import tkinter as tk
 import tkinter.ttk as ttk
-import cadastrarUsuario as cadUsuario
 import telaPrincipal as telaPrincip
 import funcoesUsuarios as funcUsuario
+import bibliotecaFuncoes as bibliotecaFuncoes
 
-def construtorFromulario(dicionario):
+def construtorFromulario(usuario,dicionario):
     '''
     Função que controi a interface de edicao de usuario
     recebe como parametro o dicionario de usuarios
@@ -30,6 +29,7 @@ def construtorFromulario(dicionario):
         login = pegarLogin
         tuplaUsuario = (dicionario[login][1],dicionario[login][2])
         funcUsuario.atualizarUsuarioDicionario(login,dicionario,tuplaUsuario)
+        bibliotecaFuncoes.logdeEventos(usuario, "Usuario editado" + "\n")
 
 
     janelaEditPermicaoUsuario = tk.Tk()

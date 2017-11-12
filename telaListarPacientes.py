@@ -41,7 +41,7 @@ def construtorListaPacientes(usuario,dicionarioPacientes):
                     informacoesGerais = informacoesGerais + numero
                 contador += 1
 
-            tabelaPacientes.insert("", 'end', text="L"+str(contDicionario), values=(cpf,nome,rg,sexo,telefone,endereco,tipoSanguineo,informacoesGerais))
+            tabelaPacientes.insert("", 'end', text=cpf1, values=(cpf,nome,rg,sexo,telefone,endereco,tipoSanguineo,informacoesGerais))
             cpf1 = ""
             nome = ""
             rg = ""
@@ -59,17 +59,35 @@ def construtorListaPacientes(usuario,dicionarioPacientes):
         '''
         funcPaciente.imprimePacientes(dicionarioPacientes)
 
+    def pesquisaPaciente(item=''):
+        '''
+        Função do evento do botao pesquisar que procura e marca no treeview o elemento encontrado
+        '''
+        children = tabelaPacientes.get_children(item)
+        for child in children:
+            text = tabelaPacientes.item(child, 'text')
+            if text == (edPesquisa.get()):
+                tabelaPacientes.selection_set(child)
+                return True
+            else:
+                res = pesquisaPaciente(child)
+                if res:
+                    return True
+
     janelaListaPacientes = tk.Tk()
     janelaListaPacientes.title("Lista de Pacientes")
     janelaListaPacientes["bg"] = "#cbfbfe"
     janelaListaPacientes.geometry("900x300+300+300")
 
-    botaoPesquisar = tk.Button(janelaListaPacientes, width=16, text="Pesquisar", command=imprimir_click,background="White", highlightcolor="White")
-    botaoPesquisar.grid(row=1,column=1)
-    botaoPesquisar.grid(sticky=(tk.W))
+    lbPesquisa = tk.Label(janelaListaPacientes, text = "CPF:")
+    lbPesquisa.place(x=10, y=5)
+    lbPesquisa["bg"] = "#cbfbfe"
 
     edPesquisa = tk.Entry(janelaListaPacientes)
-    edPesquisa.grid(row=1, column=2, sticky=(tk.W))
+    edPesquisa.place(x=50, y=5)
+
+    botaoPesquisar = tk.Button(janelaListaPacientes, width=16, text="Pesquisar", command=pesquisaPaciente,background="White", highlightcolor="White")
+    botaoPesquisar.place(x = 180, y = 3)
 
     tabelaPacientes = Treeview(janelaListaPacientes)
     tabelaPacientes['columns'] = ('cpf', 'nome', 'rg','sexo','telefone','endereco','tipoSanguineo','informacoes')
@@ -92,14 +110,10 @@ def construtorListaPacientes(usuario,dicionarioPacientes):
     tabelaPacientes.column('#7', anchor='center', width=100)
     tabelaPacientes.heading('#8', text='Info')
     tabelaPacientes.column('#8', anchor='center', width=100)
-    tabelaPacientes.grid(sticky = (tk.W,tk.E))
-    tabelaPacientes.grid(row = 2, column=1)
-    tabelaPacientes.grid_rowconfigure(1, weight = 1)
-    tabelaPacientes.grid_columnconfigure(1, weight = 1)
+    tabelaPacientes.place(x = 10, y = 30)
 
     botaoImprimirPacientes = tk.Button(janelaListaPacientes, width=16, text="Imprimir", command=imprimir_click, background="White", highlightcolor="White")
-    botaoImprimirPacientes.grid(row=3, column=1)
-    botaoImprimirPacientes.grid(sticky=(tk.W))
+    botaoImprimirPacientes.place(x = 750, y = 260)
 
     listarDicionario(dicionarioPacientes)
     bibliotecaFuncoes.logdeEventos(usuario, "Listou os pacientes"+"\n")

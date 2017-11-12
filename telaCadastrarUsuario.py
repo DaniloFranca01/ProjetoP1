@@ -1,4 +1,3 @@
-# coding: utf-8
 import tkinter as tk
 import funcoesUsuarios as userfunc
 import bibliotecaFuncoes as bibliotecaFuncoes
@@ -6,7 +5,7 @@ import telaMenuUsuarios as menuUsuarios
 import telaPrincipal as telaPrincip
 dicionarioUsuarios = {}
 
-def construtorCadastoUsuario(dicionario):
+def construtorCadastoUsuario(usuario,dicionario):
     '''
     Função que controi a interface de cadastro de usuario
     recebe como parametro o dicionario de usuarios
@@ -21,6 +20,7 @@ def construtorCadastoUsuario(dicionario):
         tuplaAcesso = listbNicelAcesso.curselection()[0]
         niveldeAcesso = int(tuplaAcesso)
         dicionarioUsuarios = userfunc.cadastrarUsuarioDicionario(loginUsuario,(senhaUsuario,niveldeAcesso),dicionario)
+        bibliotecaFuncoes.logdeEventos(usuario, "Usuario cadastrado" + "\n")
 
     janelaCadUsuario = tk.Tk()
     janelaCadUsuario.title("Cadastro de Usuário")

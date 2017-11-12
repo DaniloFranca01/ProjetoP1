@@ -1,7 +1,6 @@
-#coding: utf-8
 import tkinter as tk
 import telaCadastroPaciente as cadPaciente
-import listaPacientes as listPacientes
+import telaListarPacientes as listPacientes
 import telaExcluirPaciente as excPaciente
 import funcoesPacientes as funcPacientes
 import telaMenuUsuarios as menuUsuarios
@@ -69,7 +68,7 @@ def construtorPrincipal(login,niveldeAcesso,parametro):
         if niveldeAcesso != 0 and niveldeAcesso != 1:
             messagebox.showinfo("Informação", "Voce não tem permissão para essa operação", icon='warning')
         else:
-            menuUsuarios.construtorFormulario(niveldeAcesso,dicionarioUsuarios)
+            menuUsuarios.construtorFormulario(login,dicionarioUsuarios)
 
 
     janelaPrincipal = tk.Toplevel()

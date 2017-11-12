@@ -1,7 +1,5 @@
-#coding: utf-8
 from bibliotecaFuncoes import criptografarInformacao,descriptografarInformacao
 from tkinter import messagebox
-import telaCadastroPaciente as telaCadPaciente
 
 def CadastrasPacienteTxt(dicionarioPacientes):
     '''

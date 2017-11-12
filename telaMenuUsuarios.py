@@ -1,10 +1,8 @@
-#coding: utf-8
 from tkinter import *
-import cadastrarUsuario as cadUsuario
-import funcoesUsuarios as funcUsuario
-import editarPermicaoUsuario as editUsuario
+import telaCadastrarUsuario as cadUsuario
+import telaEditarPermicaoUsuario as editUsuario
 
-def construtorFormulario(niveldeAcesso,dicionario):
+def construtorFormulario(usuario,dicionario):
     '''
     Construtor do menu de usuarios recebe como parametro o nivel de acesso e o dicionario
     '''
@@ -12,12 +10,12 @@ def construtorFormulario(niveldeAcesso,dicionario):
         '''
         funcao do Evento do botao novo que chama o formulario de criacao de usuario
         '''
-        cadUsuario.construtorCadastoUsuario(dicionario)
+        cadUsuario.construtorCadastoUsuario(usuario,dicionario)
     def editar_click():
         '''
         funcao do Evento do botao editar que chama o formulario de edicao de usuario
         '''
-        editUsuario.construtorFromulario(dicionario)
+        editUsuario.construtorFromulario(usuario,dicionario)
 
     menuUsuarios = Tk()
     menuUsuarios.title("Menu de Usuários")

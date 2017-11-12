@@ -2,8 +2,9 @@ import tkinter as tk
 import funcoesPacientes as fpc
 import telaPrincipal as telaPrincipal
 import tkinter.ttk as ttk
+import bibliotecaFuncoes as bibliotecaFuncoes
 
-def construtorFormulario(dicionario,parametro):
+def construtorFormulario(usuario,dicionario,parametro):
     def pegarCpf():
         valorCombox = cbCpf.get()
         cpf = ""
@@ -28,12 +29,15 @@ def construtorFormulario(dicionario,parametro):
     def cadastrar_click():
         tuplaPaciente = (edCpf.get(),edNome.get(),edRg.get(),edSexo.get(),edTelefone.get(),edEndereco.get(),edTipoSanguineo.get(),edInformacoesGerais.get())
         fpc.CadastrarPacienteDicionario(edCpf.get(),tuplaPaciente,dicionario)
+        bibliotecaFuncoes.logdeEventos(usuario,"Cadastrou um paciente"+"\n")
         limparEdits()
+
 
     def editar_click():
         tuplaPaciente = (edNome.get(), edRg.get(), edSexo.get(), edTelefone.get(), edEndereco.get(), edTipoSanguineo.get(),edInformacoesGerais.get())
         cpf = pegarCpf()
         fpc.atualizarPacientesDicionario(cpf,dicionario,tuplaPaciente)
+        bibliotecaFuncoes.logdeEventos(usuario, "Editou um paciente"+"\n")
         limparEdits()
 
     def selecionaPaciente(parametro):

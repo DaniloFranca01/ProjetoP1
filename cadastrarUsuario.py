@@ -1,6 +1,7 @@
 # coding: utf-8
 import tkinter as tk
 import funcoesUsuarios as userfunc
+import bibliotecaFuncoes as bibliotecaFuncoes
 
 def construtorCadastoUsuario():
     def cadastrar_usuario():
@@ -10,7 +11,6 @@ def construtorCadastoUsuario():
         tuplaAcesso = listbNicelAcesso.curselection()[0]
         niveldeAcesso = int(tuplaAcesso)
         userfunc.cadastrarUsuario(loginUsuario,senhaUsuario,str(niveldeAcesso))
-
 
     janelaCadUsuario = tk.Tk()
     janelaCadUsuario.title("Cadastro de Usuário")

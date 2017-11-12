@@ -107,10 +107,16 @@ def descriptografarInformacao(informacao):
         contador += 1
     return informacaoDescriptografada
 
-def logdeEventos(hora,usuario,evento):
-    arquivo = open("log.txt", "w")
+def logdeEventos(usuario,evento):
+    arquivo = open("log.txt", "r")
+    conteudo = arquivo.readlines()
+
     hora = time.time()
-    arquivo.write(hora + " " +usuario + " "+ evento )
+    conteudo.append(str(hora) + " " +usuario + " "+ evento )
+
+    arquivo = open("log.txt", "w")
+    arquivo.writelines(conteudo)
     arquivo.close()
+
 #criptografarLogin("Danilo","123")
 #descriptografarLogin()

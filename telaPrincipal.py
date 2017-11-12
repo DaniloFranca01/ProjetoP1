@@ -7,15 +7,16 @@ import funcoesPacientes as funcPacientes
 dicionarioPacientes = {}
 def construtorPrincipal(login,niveldeAcesso,parametro):
     def cadastrar_click():
-        cadPaciente.construtorFormulario(dicionarioPacientes,0)
+        cadPaciente.construtorFormulario(login,dicionarioPacientes,0)
     def editar_click():
-        cadPaciente.construtorFormulario(dicionarioPacientes,1)
+        cadPaciente.construtorFormulario(login,dicionarioPacientes,1)
     def listar_click():
-        listPacientes.construtorListaPacientes(dicionarioPacientes)
+        listPacientes.construtorListaPacientes(login,dicionarioPacientes)
     def excluir_click():
-        excPaciente.construtorDelPacientes(dicionarioPacientes)
+        excPaciente.construtorDelPacientes(login,dicionarioPacientes)
     def logout_click():
         funcPacientes.CadastrasPacienteTxt(dicionarioPacientes)
+        exit()
 
     janelaPrincipal = tk.Toplevel()
     janelaPrincipal.title("Medical Manager")

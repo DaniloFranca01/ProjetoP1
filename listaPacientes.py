@@ -1,8 +1,10 @@
-from tkinter import *
+import tkinter as tk
 from tkinter.ttk import *
 import funcoesPacientes as funcPaciente
+import bibliotecaFuncoes as bibliotecaFuncoes
 
-def construtorListaPacientes(dicionarioPacientes):
+
+def construtorListaPacientes(usuario,dicionarioPacientes):
     def listarDicionario(dicionarioPacientes):
         contDicionario = 0
         for cpf in dicionarioPacientes.keys():
@@ -45,11 +47,20 @@ def construtorListaPacientes(dicionarioPacientes):
 
         contDicionario += 1
 
-    janelaListaPacientes = Tk()
+    def imprimir_click():
+        funcPaciente.imprimePacientes(dicionarioPacientes)
+
+    janelaListaPacientes = tk.Tk()
     janelaListaPacientes.title("Lista de Pacientes")
     janelaListaPacientes["bg"] = "#cbfbfe"
-    janelaListaPacientes.geometry("900x230+300+300")
+    janelaListaPacientes.geometry("900x300+300+300")
 
+    botaoPesquisar = tk.Button(janelaListaPacientes, width=16, text="Pesquisar", command=imprimir_click,background="White", highlightcolor="White")
+    botaoPesquisar.grid(row=1,column=1)
+    botaoPesquisar.grid(sticky=(tk.W))
+
+    edPesquisa = tk.Entry(janelaListaPacientes)
+    edPesquisa.grid(row=1, column=2, sticky=(tk.W))
 
     tabelaPacientes = Treeview(janelaListaPacientes)
     tabelaPacientes['columns'] = ('cpf', 'nome', 'rg','sexo','telefone','endereco','tipoSanguineo','informacoes')
@@ -72,11 +83,15 @@ def construtorListaPacientes(dicionarioPacientes):
     tabelaPacientes.column('#7', anchor='center', width=100)
     tabelaPacientes.heading('#8', text='Info')
     tabelaPacientes.column('#8', anchor='center', width=100)
-    tabelaPacientes.grid(sticky = (N,S,W,E))
-    tabelaPacientes.grid_rowconfigure(0, weight = 1)
-    tabelaPacientes.grid_columnconfigure(0, weight = 1)
+    tabelaPacientes.grid(sticky = (tk.W,tk.E))
+    tabelaPacientes.grid(row = 2, column=1)
+    tabelaPacientes.grid_rowconfigure(1, weight = 1)
+    tabelaPacientes.grid_columnconfigure(1, weight = 1)
 
-    #tabela = funcPaciente.carregarPacientes()
+    botaoImprimirPacientes = tk.Button(janelaListaPacientes, width=16, text="Imprimir", command=imprimir_click, background="White", highlightcolor="White")
+    botaoImprimirPacientes.grid(row=3, column=1)
+    botaoImprimirPacientes.grid(sticky=(tk.W))
+
     listarDicionario(dicionarioPacientes)
-
+    bibliotecaFuncoes.logdeEventos(usuario, "Listou os pacientes"+"\n")
     janelaListaPacientes.mainloop()

@@ -3,8 +3,9 @@ import tkinter.messagebox
 import funcoesPacientes as fpc
 import telaPrincipal as telaPrincipal
 import tkinter.ttk as ttk
+import bibliotecaFuncoes as bibliotecaFuncoes
 
-def construtorDelPacientes(dicionario):
+def construtorDelPacientes(usuario,dicionario):
     def pegarCpf():
         valorCombox = cbCpf.get()
         cpf = ""
@@ -20,6 +21,7 @@ def construtorDelPacientes(dicionario):
         if resultado == "yes":
             cpf = pegarCpf()
             fpc.excluiPacienteDicionario(cpf,dicionario)
+            bibliotecaFuncoes.logdeEventos(usuario, "Excluiu um paciente"+"\n")
 
     janelaExcluirPaciente = tk.Tk()
     janelaExcluirPaciente.title("Excluir paciente")

@@ -24,8 +24,8 @@ def CadastrasPacienteTxt(dicionarioPacientes):
         endereco = criptografarInformacao(dicionarioPacientes[valor][4])
         tipoSanguineo = criptografarInformacao(dicionarioPacientes[valor][5])
         informacoesGerais = criptografarInformacao(dicionarioPacientes[valor][6])
+        conteudo.append(cpf + ";" + nome + ";" + rg + ";" + sexo + ";" + telefone + ";" + endereco + ";" + tipoSanguineo + ";" + informacoesGerais+"\n")
 
-    conteudo.append(cpf + ";" + nome + ";" + rg + ";" + sexo + ";" + telefone + ";" + endereco + ";" + tipoSanguineo + ";" + informacoesGerais+"\n")
     arqPacientes = open("pacientes.txt", "w")
     arqPacientes.writelines(conteudo)
     arqPacientes.close()
@@ -36,12 +36,14 @@ def CadastrarPacienteDicionario(cpf,tuplaPaciente,dicionarioPaciente):
     messagebox.showinfo("Informação", "Paciente cadastrado")
     return dicionarioPaciente
 
+
 def atualizarPacientesDicionario(cpf,dicionario,valores):
     if cpf in dicionario.keys():
         del(dicionario[cpf])
         dicionario[cpf] = valores
         messagebox.showinfo("Informação", "Paciente Editado")
     return dicionario
+
 
 def excluiPacienteDicionario(cpf,dicionario):
     if cpf in dicionario.keys():
@@ -50,56 +52,23 @@ def excluiPacienteDicionario(cpf,dicionario):
     else:
         messagebox.showinfo("Informação", "Paciente Não encontrado")
 
-def atualizarPaciente(cpf,nome,rg,sexo,telefone,endereco,tipoSanguineo,informacoesGerais):
-    arquivo = open("pacientes.txt", "r")
-    linha = arquivo.readline()
-    flag = False
-    letraCriptografada = ""
-    while linha != "" and flag != True:
-        for numero in linha:
-            if numero != " ":
-               letraCriptografada = letraCriptografada+numero
-            else:
-                if cpf == (letraCriptografada + descriptografarInformacao(letraCriptografada) ):
-                    arquivo.write("")
-                    arquivo.close()
-                    dicionario = {}
-                    dicionario[cpf] = (nome, rg, sexo, telefone, endereco, tipoSanguineo, informacoesGerais)
-                    CadastrasPacienteTxt(dicionario)
-                    flag = True
+def imprimePacientes(dicionario):
+    arqPacientes = open("impressaopacientes.txt", "r")
+    conteudo = arqPacientes.readlines()
+    for valor in dicionario:
+        cpf = valor
+        nome = dicionario[valor][0]
+        rg = dicionario[valor][1]
+        sexo = dicionario[valor][2]
+        telefone = dicionario[valor][3]
+        endereco = dicionario[valor][4]
+        tipoSanguineo = dicionario[valor][5]
+        informacoesGerais = dicionario[valor][6]
+        conteudo.append("CPF:"+cpf + ";Nome: " + nome + ";RG: " + rg + ";Sexo: " + sexo + ";Telefone: " + telefone + ";Endereço: " + endereco + ";TipoSanguineo: " + tipoSanguineo + ";Informações: " + informacoesGerais + "\n")
 
-        linha = arquivo.readline()
-
-        if flag == True:
-            resultado = "Paciente editado com sucesso!"
-        else:
-            resultado = "Paciente provavelmente não cadastrado!"
-    return resultado
-
-
-def excluirPaciente(cpf):
-    arquivo = open("pacientes.txt", "r")
-    linha = arquivo.readline()
-    flag = False
-    while linha != "" and flag != True:
-        letraCriptografada = ""
-        for numero in linha:
-            if numero != " ":
-                letraCriptografada = letraCriptografada + numero
-            else:
-                if cpf == (letraCriptografada + descriptografarInformacao(letraCriptografada) ):
-                    arquivo.write("")
-                    arquivo.close()
-                    flag = True
-
-        linha = arquivo.readline()
-
-        if flag == True:
-            resultado = "Paciente removido com sucesso!"
-        else:
-            resultado = "Paciente provavelmente não cadastrado!"
-    return resultado
-
+    arqPacientes = open("impressaopacientes.txt", "w")
+    arqPacientes.writelines(conteudo)
+    arqPacientes.close()
 def carregarPacientes():
     '''
     Função que carrega os pacientes do TXT para o dicionario de pacientes
@@ -159,8 +128,3 @@ def carregarPacientes():
         linha = arquivo.readline()
     arquivo.close()
     return dicionarioPacientes
-
-
-'''CadastrasPaciente(("53409360","Danilo","8637637","3010","R5","O+","deprecao"))
-resultado2 = atualizarPaciente("53409360","kkkkk","99999","5000","R1","A+","Curado")
-resultado3 = excluirPaciente("53409360")'''

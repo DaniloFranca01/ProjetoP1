@@ -10,7 +10,7 @@ def logar_click():
     niveldeAcesso = funcUsuario.recebeUsuario(loginUsuario,senhaUsuario,dicUsuarios)
     if niveldeAcesso != None:
         niveldeAcesso = int(niveldeAcesso)
-        telaPrincipal.construtorPrincipal(login,niveldeAcesso,0)
+        telaPrincipal.construtorPrincipal(loginUsuario,niveldeAcesso,0)
 
 def novo_click():
     cadUsuario.construtorCadastoUsuario()

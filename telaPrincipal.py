@@ -4,24 +4,42 @@ import telaCadastroPaciente as cadPaciente
 import listaPacientes as listPacientes
 import telaExcluirPaciente as excPaciente
 import funcoesPacientes as funcPacientes
+import telaMenuUsuarios as menuUsuarios
+from tkinter import messagebox
+
 dicionarioPacientes = {}
+
 def construtorPrincipal(login,niveldeAcesso,parametro):
     def cadastrar_click():
-        cadPaciente.construtorFormulario(login,dicionarioPacientes,0)
+        if niveldeAcesso != 0 and niveldeAcesso != 1 and niveldeAcesso != 2:
+            messagebox.showinfo("Informação", "Voce não tem permissão para essa operação", icon='warning')
+        else:
+            cadPaciente.construtorFormulario(login,dicionarioPacientes,0)
     def editar_click():
-        cadPaciente.construtorFormulario(login,dicionarioPacientes,1)
+        if niveldeAcesso != 0 and niveldeAcesso != 1:
+            messagebox.showinfo("Informação", "Voce não tem permissão para essa operação", icon='warning')
+        else:
+            cadPaciente.construtorFormulario(login,dicionarioPacientes,1)
     def listar_click():
         listPacientes.construtorListaPacientes(login,dicionarioPacientes)
     def excluir_click():
-        excPaciente.construtorDelPacientes(login,dicionarioPacientes)
+        if niveldeAcesso != 0 and niveldeAcesso != 1:
+            messagebox.showinfo("Informação", "Voce não tem permissão para essa operação", icon='warning')
+        else:
+            excPaciente.construtorDelPacientes(login,dicionarioPacientes)
     def logout_click():
         funcPacientes.CadastrasPacienteTxt(dicionarioPacientes)
         exit()
+    def usuarios_click():
+        if niveldeAcesso != 0 and niveldeAcesso != 1:
+            messagebox.showinfo("Informação", "Voce não tem permissão para essa operação", icon='warning')
+        else:
+            menuUsuarios.construtorFormulario(niveldeAcesso)
 
     janelaPrincipal = tk.Toplevel()
     janelaPrincipal.title("Medical Manager")
     janelaPrincipal["bg"] = "#cbfbfe"
-    janelaPrincipal.geometry("658x360+300+300")
+    janelaPrincipal.geometry("732x360+300+300")
 
     logo = tk.PhotoImage(file="smm.png")
     lbImagem = tk.Label(janelaPrincipal, image=logo)
@@ -42,9 +60,13 @@ def construtorPrincipal(login,niveldeAcesso,parametro):
     botaoMostrar = tk.Button(janelaPrincipal, width = 16,height = 2, text = "Mostrar Paciente", command = listar_click, background = "White",highlightcolor = "White")
     botaoMostrar.grid(row=2,column=4)
 
+    botaoUsuarios = tk.Button(janelaPrincipal, width=16, height=2, text="Menu de Usuarios", command=usuarios_click,
+                            background="White", highlightcolor="White")
+    botaoUsuarios.grid(row=2, column=5)
+
     botaoLogout = tk.Button(janelaPrincipal, width=16, height=2, text="Logout", command=logout_click,
                              background="White", highlightcolor="White")
-    botaoLogout.grid(row=2, column=5)
+    botaoLogout.grid(row=2, column=6)
 
     if parametro == 0:
         dicionarioPacientes = funcPacientes.carregarPacientes()

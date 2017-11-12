@@ -1,6 +1,5 @@
 #coding: utf-8
 from tkinter import *
-import cadastrarUsuario as cadUsuario
 import telaPrincipal as telaPrincipal
 import funcoesUsuarios as funcUsuario
 
@@ -11,10 +10,6 @@ def logar_click():
     if niveldeAcesso != None:
         niveldeAcesso = int(niveldeAcesso)
         telaPrincipal.construtorPrincipal(loginUsuario,niveldeAcesso,0)
-
-def novo_click():
-    cadUsuario.construtorCadastoUsuario()
-
 
 janelaLogin = Tk()
 janelaLogin.title("Login")
@@ -43,9 +38,6 @@ edSenha.grid(row = 2,column = 1, sticky = W)
 
 botaoEntrar = Button(janelaLogin, width = 16, text = "Logar", command = logar_click, background = "White",highlightcolor = "White")
 botaoEntrar.grid(row=3,column=1,sticky = W)
-
-botaoEntrar = Button(janelaLogin, width = 16, text = "Novo Usuario", command = novo_click, background = "White",highlightcolor = "White")
-botaoEntrar.grid(row=3,column=2,sticky = W)
 
 dicUsuarios = funcUsuario.carregarUsuarios()
 

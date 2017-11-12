@@ -1,4 +1,4 @@
-import time
+from datetime import datetime
 def existeEm(carac, string):
     for elemento in string:
         if elemento == carac:
@@ -111,8 +111,13 @@ def logdeEventos(usuario,evento):
     arquivo = open("log.txt", "r")
     conteudo = arquivo.readlines()
 
-    hora = time.time()
-    conteudo.append(str(hora) + " " +usuario + " "+ evento )
+    data = datetime.now()
+    dia = str(data.day)
+    mes = str(data.month)
+    ano = str(data.year)
+    hora = str(data.hour)
+    minutos = str(data.minute)
+    conteudo.append(dia+"/"+mes+"/"+ano+" - "+hora+":"+minutos + " " +usuario + " "+ evento )
 
     arquivo = open("log.txt", "w")
     arquivo.writelines(conteudo)

@@ -96,45 +96,7 @@ def carregarPacientes():
     arquivo = open("pacientes.txt", "r")
     dicionarioPacientes={}
     linha = arquivo.readline()
-    cpfCriptografado = ""
-    nomeCriptografado = ""
-    rgCriptografado = ""
-    sexoCriptografado = ""
-    telefoneCriptografado = ""
-    enderecoCriptografado = ""
-    tipoSanguineoCriptografado = ""
-    informacoesGeraisCriptografado = ""
-    while linha != "":
-        contador = 0
-        for numero in linha:
-            if numero != ";" and numero != "\n" and contador == 0:
-                cpfCriptografado = cpfCriptografado + numero
-            elif numero != ";" and numero != "\n" and contador == 1:
-                nomeCriptografado = nomeCriptografado + numero
-            elif numero != ";" and numero != "\n" and contador == 2:
-                rgCriptografado = rgCriptografado + numero
-            elif numero != ";" and numero != "\n" and contador == 3:
-                sexoCriptografado = sexoCriptografado + numero
-            elif numero != ";" and numero != "\n" and contador == 4:
-                telefoneCriptografado = telefoneCriptografado + numero
-            elif numero != ";" and numero != "\n" and contador == 5:
-                enderecoCriptografado = enderecoCriptografado + numero
-            elif numero != ";" and numero != "\n" and contador == 6:
-                tipoSanguineoCriptografado = tipoSanguineoCriptografado + numero
-            elif numero != ";" and numero != "\n" and contador == 7:
-                informacoesGeraisCriptografado = informacoesGeraisCriptografado + numero
-            elif numero == ";":
-                contador += 1
-
-        cpf = descriptografarInformacao(cpfCriptografado)
-        nome = descriptografarInformacao(nomeCriptografado)
-        rg = descriptografarInformacao(rgCriptografado)
-        sexo = descriptografarInformacao(sexoCriptografado)
-        telefone = descriptografarInformacao(telefoneCriptografado)
-        endereco = descriptografarInformacao(enderecoCriptografado)
-        tipoSanguineo = descriptografarInformacao(tipoSanguineoCriptografado)
-        informacoesGerais = descriptografarInformacao(informacoesGeraisCriptografado)
-        dicionarioPacientes[cpf] = (nome, rg, sexo, telefone, endereco, tipoSanguineo, informacoesGerais)
+    if linha != "\n":
         cpfCriptografado = ""
         nomeCriptografado = ""
         rgCriptografado = ""
@@ -143,7 +105,46 @@ def carregarPacientes():
         enderecoCriptografado = ""
         tipoSanguineoCriptografado = ""
         informacoesGeraisCriptografado = ""
+        while linha != "":
+            contador = 0
+            for numero in linha:
+                if numero != ";" and numero != "\n" and contador == 0:
+                    cpfCriptografado = cpfCriptografado + numero
+                elif numero != ";" and numero != "\n" and contador == 1:
+                    nomeCriptografado = nomeCriptografado + numero
+                elif numero != ";" and numero != "\n" and contador == 2:
+                    rgCriptografado = rgCriptografado + numero
+                elif numero != ";" and numero != "\n" and contador == 3:
+                    sexoCriptografado = sexoCriptografado + numero
+                elif numero != ";" and numero != "\n" and contador == 4:
+                    telefoneCriptografado = telefoneCriptografado + numero
+                elif numero != ";" and numero != "\n" and contador == 5:
+                    enderecoCriptografado = enderecoCriptografado + numero
+                elif numero != ";" and numero != "\n" and contador == 6:
+                    tipoSanguineoCriptografado = tipoSanguineoCriptografado + numero
+                elif numero != ";" and numero != "\n" and contador == 7:
+                    informacoesGeraisCriptografado = informacoesGeraisCriptografado + numero
+                elif numero == ";":
+                    contador += 1
 
-        linha = arquivo.readline()
+            cpf = descriptografarInformacao(cpfCriptografado)
+            nome = descriptografarInformacao(nomeCriptografado)
+            rg = descriptografarInformacao(rgCriptografado)
+            sexo = descriptografarInformacao(sexoCriptografado)
+            telefone = descriptografarInformacao(telefoneCriptografado)
+            endereco = descriptografarInformacao(enderecoCriptografado)
+            tipoSanguineo = descriptografarInformacao(tipoSanguineoCriptografado)
+            informacoesGerais = descriptografarInformacao(informacoesGeraisCriptografado)
+            dicionarioPacientes[cpf] = (nome, rg, sexo, telefone, endereco, tipoSanguineo, informacoesGerais)
+            cpfCriptografado = ""
+            nomeCriptografado = ""
+            rgCriptografado = ""
+            sexoCriptografado = ""
+            telefoneCriptografado = ""
+            enderecoCriptografado = ""
+            tipoSanguineoCriptografado = ""
+            informacoesGeraisCriptografado = ""
+
+            linha = arquivo.readline()
     arquivo.close()
     return dicionarioPacientes

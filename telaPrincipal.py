@@ -71,7 +71,8 @@ def construtorPrincipal(login,niveldeAcesso,parametro):
             menuUsuarios.construtorFormulario(login,dicionarioUsuarios)
 
 
-    janelaPrincipal = tk.Toplevel()
+    janelaPrincipal = tk.Tk()
+
     janelaPrincipal.title("Medical Manager")
     janelaPrincipal["bg"] = "#cbfbfe"
     janelaPrincipal.geometry("732x360+300+300")

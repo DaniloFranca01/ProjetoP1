@@ -12,7 +12,9 @@ def logar_click():
     niveldeAcesso = funcUsuario.recebeUsuario(loginUsuario,senhaUsuario,dicUsuarios)
     if niveldeAcesso != None:
         niveldeAcesso = int(niveldeAcesso)
+        janelaLogin.destroy()
         telaPrincipal.construtorPrincipal(loginUsuario,niveldeAcesso,0)
+
 
 janelaLogin = Tk()
 janelaLogin.title("Login")

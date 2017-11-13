@@ -1,14 +1,14 @@
 from bibliotecaFuncoes import criptografarInformacao,descriptografarInformacao
 from tkinter import messagebox
 
+
 def CadastrasPacienteTxt(dicionarioPacientes):
     '''
     Função que cadastra os pacientes do dicionario em um TXT criptografado
     recebe como parametro o dicionario de pacientes
     '''
-    arqPacientes = open("pacientes.txt", "r")
-    conteudo = arqPacientes.readlines()
-
+    arqPacientes = open("pacientes.txt", "w")
+    conteudo = ""
     cpf = ""
     nome = ""
     rg = ""
@@ -26,10 +26,9 @@ def CadastrasPacienteTxt(dicionarioPacientes):
         endereco = criptografarInformacao(dicionarioPacientes[valor][4])
         tipoSanguineo = criptografarInformacao(dicionarioPacientes[valor][5])
         informacoesGerais = criptografarInformacao(dicionarioPacientes[valor][6])
-        conteudo.append(cpf + ";" + nome + ";" + rg + ";" + sexo + ";" + telefone + ";" + endereco + ";" + tipoSanguineo + ";" + informacoesGerais+"\n")
+        conteudo = cpf + ";" + nome + ";" + rg + ";" + sexo + ";" + telefone + ";" + endereco + ";" + tipoSanguineo + ";" + informacoesGerais+"\n"
+        arqPacientes.write(conteudo)
 
-    arqPacientes = open("pacientes.txt", "w")
-    arqPacientes.writelines(conteudo)
     arqPacientes.close()
 
 
@@ -72,8 +71,8 @@ def imprimePacientes(dicionario):
     Função que imprime em um TXT as informacoes de todos os pacientes sem criptografia
     recebe como parametro o dicionario de pacientes
     '''
-    arqPacientes = open("impressaopacientes.txt", "r")
-    conteudo = arqPacientes.readlines()
+    arqPacientes = open("impressaopacientes.txt", "w")
+    conteudo = ""
     for valor in dicionario:
         cpf = valor
         nome = dicionario[valor][0]
@@ -83,11 +82,11 @@ def imprimePacientes(dicionario):
         endereco = dicionario[valor][4]
         tipoSanguineo = dicionario[valor][5]
         informacoesGerais = dicionario[valor][6]
-        conteudo.append("CPF:"+cpf + ";Nome: " + nome + ";RG: " + rg + ";Sexo: " + sexo + ";Telefone: " + telefone + ";Endereço: " + endereco + ";TipoSanguineo: " + tipoSanguineo + ";Informações: " + informacoesGerais + "\n")
+        conteudo = "CPF:"+cpf + ";Nome: " + nome + ";RG: " + rg + ";Sexo: " + sexo + ";Telefone: " + telefone + ";Endereço: " + endereco + ";TipoSanguineo: " + tipoSanguineo + ";Informações: " + informacoesGerais + "\n"
+        arqPacientes.write(conteudo)
 
-    arqPacientes = open("impressaopacientes.txt", "w")
-    arqPacientes.writelines(conteudo)
     arqPacientes.close()
+    messagebox.showinfo("Informação", "Lista impressa com sucesso!")
 
 
 def carregarPacientes():

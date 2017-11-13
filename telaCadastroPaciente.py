@@ -41,7 +41,7 @@ def construtorFormulario(usuario,dicionario,parametro):
         '''
         tuplaPaciente = (edCpf.get(),edNome.get(),edRg.get(),edSexo.get(),edTelefone.get(),edEndereco.get(),edTipoSanguineo.get(),edInformacoesGerais.get())
         fpc.CadastrarPacienteDicionario(edCpf.get(),tuplaPaciente,dicionario)
-        bibliotecaFuncoes.logdeEventos(usuario,"Cadastrou um paciente"+"\n")
+        bibliotecaFuncoes.logdeEventos(usuario,"Cadastrou um paciente")
         limparEdits()
 
 
@@ -52,7 +52,7 @@ def construtorFormulario(usuario,dicionario,parametro):
         tuplaPaciente = (edNome.get(), edRg.get(), edSexo.get(), edTelefone.get(), edEndereco.get(), edTipoSanguineo.get(),edInformacoesGerais.get())
         cpf = pegarCpf()
         fpc.atualizarPacientesDicionario(cpf,dicionario,tuplaPaciente)
-        bibliotecaFuncoes.logdeEventos(usuario, "Editou um paciente"+"\n")
+        bibliotecaFuncoes.logdeEventos(usuario, "Editou um paciente")
         limparEdits()
 
     def selecionaPaciente(parametro):

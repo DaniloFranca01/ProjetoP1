@@ -20,7 +20,7 @@ def construtorCadastoUsuario(usuario,dicionario):
         tuplaAcesso = listbNicelAcesso.curselection()[0]
         niveldeAcesso = int(tuplaAcesso)
         dicionarioUsuarios = userfunc.cadastrarUsuarioDicionario(loginUsuario,(senhaUsuario,niveldeAcesso),dicionario)
-        bibliotecaFuncoes.logdeEventos(usuario, "Usuario cadastrado" + "\n")
+        bibliotecaFuncoes.logdeEventos(usuario, "Usuario cadastrado")
 
     janelaCadUsuario = tk.Tk()
     janelaCadUsuario.title("Cadastro de Usuário")

@@ -1,6 +1,7 @@
 from bibliotecaFuncoes import criptografarInformacao,descriptografarInformacao
 from tkinter import messagebox
 
+
 def cadastrarUsuarioDicionario(login,tuplaUsuario,dicionario):
     '''
     Função que cadastra usuario em um dicionario
@@ -38,25 +39,6 @@ def recebeUsuario(login,senha,dicionarioUsuarios):
         else:
             messagebox.showinfo("Informação", "Usuario não cadastrado",icon='warning')
             break
-
-def cadastrarUsuario(login,senha,nivel):
-    '''
-    Função que cadastra usuario em um arquivo TXT criptografado
-    recebe como parametro o login, senha e o nivel de acesso
-    '''
-    arquivo = open("usuarios.txt", "r")
-
-    conteudo = arquivo.readlines()
-
-    loginCript = criptografarInformacao(login)
-    senhaCript = criptografarInformacao(senha)
-    nivelCript = criptografarInformacao(nivel)
-    conteudo.append(loginCript+";"+senhaCript+";"+nivelCript+"\n")
-
-    arquivo = open("usuarios.txt", "w")
-    arquivo.writelines(conteudo)
-    arquivo.close()
-    messagebox.showinfo("Informação","Usuario cadastrado")
 
 def carregarUsuarios():
     '''
@@ -97,9 +79,9 @@ def cadastrarUsuariosTxt(dicionarioUsuarios):
     Função que cadastra um TXT os usuarios de um dicionario
     recebe como parametro um dicionario de usuarios
     '''
-    arquivo = open("usuarios.txt", "r")
-    conteudo = arquivo.readlines()
 
+    arquivo = open("usuarios.txt", "w")
+    conteudo = ""
     login = ""
     senha = ""
     nivel = ""
@@ -107,10 +89,9 @@ def cadastrarUsuariosTxt(dicionarioUsuarios):
         login = criptografarInformacao(valor)
         senha = criptografarInformacao(dicionarioUsuarios[valor][0])
         nivel = criptografarInformacao(str(dicionarioUsuarios[valor][1]))
-        conteudo.append(login + ";" + senha + ";" + nivel +"\n")
+        conteudo = login + ";" + senha + ";" + nivel +"\n"
+        arquivo.write(conteudo)
 
-    arquivo = open("usuarios.txt", "w")
-    arquivo.writelines(conteudo)
     arquivo.close()
 
 

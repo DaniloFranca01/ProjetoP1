@@ -58,6 +58,7 @@ def construtorListaPacientes(usuario,dicionarioPacientes):
         Função do evento imprimir que chama a funcao de imprecao de pacientes em TXT sem criptografia
         '''
         funcPaciente.imprimePacientes(dicionarioPacientes)
+        bibliotecaFuncoes.logdeEventos(usuario, "Imprimiu lista de pacientes")
 
     def pesquisaPaciente(item=''):
         '''
@@ -77,7 +78,7 @@ def construtorListaPacientes(usuario,dicionarioPacientes):
     janelaListaPacientes = tk.Tk()
     janelaListaPacientes.title("Lista de Pacientes")
     janelaListaPacientes["bg"] = "#cbfbfe"
-    janelaListaPacientes.geometry("900x300+300+300")
+    janelaListaPacientes.geometry("820x300+300+300")
 
     lbPesquisa = tk.Label(janelaListaPacientes, text = "CPF:")
     lbPesquisa.place(x=10, y=5)
@@ -113,8 +114,8 @@ def construtorListaPacientes(usuario,dicionarioPacientes):
     tabelaPacientes.place(x = 10, y = 30)
 
     botaoImprimirPacientes = tk.Button(janelaListaPacientes, width=16, text="Imprimir", command=imprimir_click, background="White", highlightcolor="White")
-    botaoImprimirPacientes.place(x = 750, y = 260)
+    botaoImprimirPacientes.place(x = 690, y = 260)
 
     listarDicionario(dicionarioPacientes)
-    bibliotecaFuncoes.logdeEventos(usuario, "Listou os pacientes"+"\n")
+    bibliotecaFuncoes.logdeEventos(usuario, "Listou os pacientes")
     janelaListaPacientes.mainloop()

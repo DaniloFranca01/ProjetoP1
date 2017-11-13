@@ -20,7 +20,7 @@ def construtorFromulario(usuario,dicionario):
         niveldeAcesso = int(tuplaAcesso)
         tuplaUsuario = (dicionario[login][0],niveldeAcesso)
         funcUsuario.atualizarUsuarioDicionario(login,dicionario,tuplaUsuario)
-        bibliotecaFuncoes.logdeEventos(usuario, "Usuario editado" + "\n")
+        bibliotecaFuncoes.logdeEventos(usuario, "Usuario editado")
 
 
     janelaEditPermicaoUsuario = tk.Tk()

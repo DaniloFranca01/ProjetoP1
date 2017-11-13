@@ -110,6 +110,7 @@ def logdeEventos(usuario,evento):
     Função que salva em um TXT o log de toda atividade do usuario
     recebe como parametro o usuario e o evento
     '''
+    conteudo = []
     arquivo = open("log.txt", "r")
     conteudo = arquivo.readlines()
 
@@ -119,9 +120,8 @@ def logdeEventos(usuario,evento):
     ano = str(data.year)
     hora = str(data.hour)
     minutos = str(data.minute)
-    conteudo.append(dia+"/"+mes+"/"+ano+" - "+hora+":"+minutos + " " +usuario + " "+ evento )
-
     arquivo = open("log.txt", "w")
+    conteudo.append(dia+"/"+mes+"/"+ano+" - "+hora+":"+minutos +" "+usuario+" "+ evento+"\n")
     arquivo.writelines(conteudo)
     arquivo.close()
 

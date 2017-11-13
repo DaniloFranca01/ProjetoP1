@@ -20,7 +20,7 @@ def construtorFormulario(usuario,dicionario):
     menuUsuarios = Tk()
     menuUsuarios.title("Menu de Usuários")
     menuUsuarios["bg"] = "#cbfbfe"
-    menuUsuarios.geometry("300x200+300+300")
+    menuUsuarios.geometry("300x100+300+300")
 
     botaoNovoUsuario = Button(menuUsuarios, width = 16, text = "Novo Usuario", command = novo_click, background = "White",highlightcolor = "White")
     botaoNovoUsuario.grid(row=1,column=1,sticky = W)

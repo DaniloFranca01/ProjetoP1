@@ -9,25 +9,16 @@ def construtorFromulario(usuario,dicionario):
     Função que controi a interface de edicao de usuario
     recebe como parametro o dicionario de usuarios
     '''
-    def pegarLogin():
-        '''
-        Função que pega o valor do login do combobox
-        '''
-        valorCombox = cbLogin.get()
-        login = ""
-        for letra in valorCombox:
-            if letra != "-":
-                login = login + letra
-            elif letra == "-":
-                break
-        return login
 
     def editar_usuario():
         '''
         Função do evento click do botao editar que chama a funcao de edicao
         '''
-        login = pegarLogin
-        tuplaUsuario = (dicionario[login][1],dicionario[login][2])
+        login = cbLogin.get()
+        tuplaAcesso = ()
+        tuplaAcesso = listbNicelAcesso.curselection()[0]
+        niveldeAcesso = int(tuplaAcesso)
+        tuplaUsuario = (dicionario[login][0],niveldeAcesso)
         funcUsuario.atualizarUsuarioDicionario(login,dicionario,tuplaUsuario)
         bibliotecaFuncoes.logdeEventos(usuario, "Usuario editado" + "\n")
 
